@@ -1,0 +1,446 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    color: var(--black);
+    font-family: var(--font1);
+    transition: all linear 100ms;
+}
+:root{
+    --black:#202020;
+    --white:#D9D9D9;
+    --red:#B50E0E;
+    --darkRed:#8f0e0e;
+    --gray:#00000058;
+    --font1:'Montserrat', sans-serif;
+    --font2:'Playfair Display', serif;
+    --generalPadding:1.2rem;
+    --margin3:var(--generalPadding) auto;
+    --verysmallfont:clamp(0.6rem,1vw,1rem);
+    --btfont:clamp(0.7rem,1.1vw,2rem);
+    --bigfont:clamp(1rem,4vw,1.5rem);
+    --mediumfont:clamp(1rem,1.4vw,2rem);
+    --contentfont:clamp(0.8rem,1.2vw,2rem);
+    --border:3px solid var(--black);
+}
+@mixin headings{
+    h1{
+        font-family: var(--font1);
+        font-weight: 800;
+        color: var(--red);
+        font-size: clamp(2.4rem,4vw,6rem);
+    }
+}
+@mixin labels{
+    cursor: pointer;
+    font-size: var(--verysmallfont);
+    input{
+        font-size:var(--bigfont);
+        width: 100%;
+        background-color:transparent;
+        border-bottom:var(--border);
+    }
+}
+@mixin forms{
+    display: flex;
+    margin: var(--margin3);
+    justify-content: space-between;
+    gap: var(--generalPadding);
+    height: fit-content;
+    .content{
+        display: flex;
+        flex-direction: column;
+        gap: 2vh;
+        width: 100%;
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    label{
+        cursor: pointer;
+        font-size: var(--verysmallfont);
+    }
+    input{
+        font-size:var(--bigfont);
+        width: 100%;
+        background-color:transparent;
+        border-bottom:var(--border);
+    }
+    button{
+        @include buttons(var(--red),var(--white) );
+        width: 100%;
+    }
+    .img-container{
+        position: relative;
+        width:80%;
+        background-color: var(--red);
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    .overlay{
+        position: absolute;
+        background-color: var(--red);
+        mix-blend-mode: color-burn;
+        width: 100%;
+        height: 100%;
+    }
+    .registration{
+        width: 100%;
+        button{
+            background-color: var(--black);
+        }
+    }
+    .role{
+        display: flex;
+        justify-content: space-between;
+        gap: var(--generalPadding);
+        input{
+            appearance: none;
+            display: none;
+        }
+        label{
+            @include buttons(var(--black),var(--white) ,3px );
+            width: 100%;
+            text-align: center;
+            
+        }
+        input[type="radio"]:checked+label, label:hover,label:active{
+            background-color: var(--red);
+            color: var(--white);
+            border: 3px solid transparent;
+        }
+    }
+}
+@mixin buttons($bckcolor,$fontcolor,$border:0){
+    background-color: $bckcolor;
+    color: $fontcolor;
+    font-size: var(--btfont);
+    font-weight: 600;
+    padding:15px 25px;
+    &:hover, &:active{
+        filter: brightness(90%);
+    }
+    @if $border != 0 {
+        border: $border solid $bckcolor;
+        background-color: transparent;
+        color: $bckcolor;
+        &:hover, &:active{
+            background-color: var(--red);
+            color: var(--white);
+            border: $border solid transparent;
+            filter: brightness(100%);
+        }
+      }
+}
+.App{
+    position: relative;
+    background-color: var(--white);
+    width: 78%;
+    margin: 0 auto;
+    padding: var(--generalPadding) var(--generalPadding) 0;
+    overflow-x: hidden;
+}
+
+.line{
+    width: 100%;
+    height: 2px;
+    background-color: var(--black);
+}
+#Header{
+    .logo{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        span{
+            font-family: var(--font2);
+            font-size: clamp(3.5rem,6vw,6rem);
+            font-weight: 100;
+            margin-top: -2.5%;
+        }
+        p{
+            font-size:var(--verysmallfont);
+            font-weight: 700;
+            color: var(--red);
+        }
+    }
+    .timeline{
+        font-size: var(--verysmallfont);
+        display: flex;
+        flex-direction: column;
+        .container{
+            display: flex;
+            justify-content:space-between;
+        }
+        a{
+            text-decoration: none;
+            cursor: pointer;
+        }
+    }
+    .navbar{
+        margin-top: 5px;
+        background-color: var(--black);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding:0.8% 1.5%;
+        p{
+            color: var(--white);
+            font-size: var(--verysmallfont);
+            cursor: pointer;
+        }
+        p:hover,img:hover{
+            transform: scale(1.1);
+        }
+        img{
+            width: 3%;
+            cursor: pointer;
+        }
+    }
+}
+#Footer{
+    background-color: var(--black);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding:0.8% 1.5%;
+    img{
+        width: 10%;
+
+    }
+    span{
+        color: var(--white);
+        font-size: var(--verysmallfont);
+    }
+}
+#Signin{
+    @include forms();
+    @include headings();
+}
+#Signup{
+    @include forms();
+    @include headings();
+}
+.back-bt{
+    font-size: clamp(2.4rem,3vw,5rem);
+    color:var(--red);
+    &:hover, &:active{
+        color: var(--black);
+    }
+}
+#me{
+    @include headings();
+    display: flex;
+    flex-direction: column;
+    margin: var(--margin3);
+    gap: var(--generalPadding);
+    .heading-container{
+        display: flex;
+        align-items: center;
+        gap: var(--generalPadding);
+    }
+    form{
+        display: flex;
+        flex-direction: column;
+        gap: 2vw;
+        @include labels();
+    }
+    input,select,textarea{
+        font-weight: 500;
+    }
+    .selected-category{
+        color: var(--gray);
+    }
+    select{
+        background-color: var(--black);
+        color: var(--white);
+        width: 100%;
+        padding:15px 5px;
+        font-size:var(--bigfont);
+        option{
+            color: var(--white);
+        }
+    }
+    textarea{
+        width: 100%;
+        min-height: 30vh;
+        background-color: transparent;
+        border: var(--border);
+        font-size: var(--contentfont);
+    }
+    .submit-bt{
+        @include buttons(var(--red),var(--white) ,0 );
+    }
+}
+.admin-panel {
+    @include headings();
+    margin:var(--margin3);
+    .tiles {
+      display: flex;
+      flex-direction: column;
+      gap: var(--generalPadding);
+    }
+  
+    .tile {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        border:var(--border);
+        padding: 10px;
+        &:hover {
+            background-color: rgb(203, 203, 203);
+        }
+        div{
+            cursor: pointer;
+        }
+        h2{
+            font-size: var(--mediumfont);
+            font-weight: 600;
+        }
+        span{
+            font-size:var(--verysmallfont);
+            color: var(--gray);
+            font-weight: 500;
+        }
+        p{
+            font-size:var(--contentfont);
+            font-weight: 500;
+        }
+        button{
+            @include buttons(var(--red),var(--white) ,0 )
+        }
+    }
+  
+    .modal {
+      position: fixed;
+      z-index: 1;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      backdrop-filter: blur(10px);
+  
+      .modal-content {
+        background-color: var(--white);
+        border: var(--border);
+        margin:var(--margin3);
+        padding: 2%;
+        width: 70vw;
+        h2{
+            font-size: clamp(1rem,2vw,3rem);
+            font-weight: 600;
+        }
+        span{
+            font-size: var(--contentfont);
+            font-weight: 500;
+        }
+        p{
+            font-size: var(--verysmallfont);
+            color: var(--gray);
+            font-weight: 600;
+        }
+        .content{
+            font-size:var(--contentfont);
+            font-weight: 400;
+            color: var(--black);
+            text-align: justify;
+        }
+        img{
+            margin: 2% auto;
+        }
+        div{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: var(--generalPadding);
+            margin: 2% auto;
+        }
+        button{
+            width:30%;
+        }
+        .approve{
+            @include buttons(var(--black),var(--white),0 );
+        }
+        .deny{
+            @include buttons(var(--red),var(--white),0 );
+        }
+      }
+      .close {
+        color: var(--black);
+        float: right;
+        &:hover,
+        &:focus {
+          color: black;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+@media only screen and (max-width: 800px) {
+    .App {
+        width: 95%;
+        padding: 0.9em 0.9em 0;
+      }
+    #Footer{
+        padding:1.5% 2.5%;
+        img{
+            width: 20%;
+        }
+    }
+    #Signin,#Signup{
+        flex-direction: column;
+        .img-container{
+            display: none;
+        }
+    }
+    .AdminPanel{
+        .modal{
+            .modal-content{
+                width: 90vw;
+            }
+        }
+        
+    }
+  }
