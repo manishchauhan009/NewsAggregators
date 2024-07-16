@@ -22,14 +22,14 @@ app.use(express.json());
 app.use(cookieParser());
 
 // CORS middleware configuration
-// app.use(
-//   cors({
-//     origin: "http://localhost:3000", // Allow requests from localhost:3000
-//     methods: ["GET", "POST"], // Allow only GET and POST methods
-//     allowedHeaders: ["Content-Type"], // Allow only Content-Type header
-//   })
-// );
-app.use(cors());
+app.use(
+  cors({
+    origin: "https://news-aggregators.vercel.app", // Allow requests from localhost:3000
+    methods: ["GET", "POST"], // Allow only GET and POST methods
+    allowedHeaders: ["Content-Type"], // Allow only Content-Type header
+  })
+);
+// app.use(cors());
 
 // Route middleware for news-related endpoints
 app.use("/api/news", newsRoutes);
