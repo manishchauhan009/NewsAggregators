@@ -295,9 +295,13 @@
             font-weight: 600;
             img{
                 position: absolute;
-                transform: scale(0.8);
-                top: -100px;
-                right: -80px;
+                width: 80%;
+                top: -70px;
+                right: -70px;
+                // animation: rotating 10s linear infinite;
+                // &:hover{
+                //     animation: none;
+                // }
             }
         }
 
@@ -546,4 +550,14 @@
     .back-bt{
         display: none;
     }
+  }
+
+
+  @keyframes rotating {
+    0%{
+        transform: rotate(0deg);
+       }
+    100%{
+        transform: rotate(360deg);
+       }
   }
