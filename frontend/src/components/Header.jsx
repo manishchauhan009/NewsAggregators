@@ -69,23 +69,10 @@ function Header() {
         <span>PU TIMES</span>
       </div>
       <div className="timeline">
-        <div className="line"></div>
-        <div className="container">
-          <span>
-            {hours}:{minutes}:{seconds}
-          </span>
-          <span>
-            {day}, {date} {month} {year}
-          </span>
-          <a
-            href="https://paruluniversity.ac.in/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <span>paruluniversity.ac.in</span>
-          </a>
-        </div>
-      </div>
+                    <span>{hours}: {minutes}: {seconds}</span>
+                    <span>{day}, {date} {month} {year}</span>
+                    <a href='https://paruluniversity.ac.in/' target='_blank'><span>paruluniversity.ac.in</span></a>
+            </div>
       <nav className="navbar">
         {[
           //"Training and Placement Cell",

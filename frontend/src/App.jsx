@@ -9,6 +9,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import MainAdmin from "./components/MainAdmin";
 import CategoryContent from "./components/CategoryContent";
+import paper from "./assets/paper1.png";
 
 function App() {
   const [userauth, setUserAuth] = useState(false);
@@ -32,6 +33,7 @@ function App() {
           <Route path="/content/:category" element={<CategoryContent />} />
         </Routes>
         <Footer />
+        <div className="paper-texture"><img src={paper}/></div>
       </BrowserRouter>
     </div>
   );

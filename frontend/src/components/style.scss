@@ -12,7 +12,7 @@
     --white:#D9D9D9;
     --red:#B50E0E;
     --darkRed:#8f0e0e;
-    --gray:#00000058;
+    --gray:#00000061;
     --font1:'Montserrat', sans-serif;
     --font2:'Playfair Display', serif;
     --generalPadding:1.2rem;
@@ -41,13 +41,18 @@
         background-color:transparent;
         border-bottom:var(--border);
     }
+    ::placeholder{
+        color: var(--gray)
+    }
 }
 @mixin forms{
+    @include labels();
     display: flex;
     margin: var(--margin3);
     justify-content: space-between;
     gap: var(--generalPadding);
     height: fit-content;
+    width: 100%;
     .content{
         display: flex;
         flex-direction: column;
@@ -58,16 +63,6 @@
         display: flex;
         flex-direction: column;
         gap: 20px;
-    }
-    label{
-        cursor: pointer;
-        font-size: var(--verysmallfont);
-    }
-    input{
-        font-size:var(--bigfont);
-        width: 100%;
-        background-color:transparent;
-        border-bottom:var(--border);
     }
     button{
         @include buttons(var(--red),var(--white) );
@@ -138,14 +133,42 @@
       }
 }
 .App{
+    box-shadow: 0px 0px 100px rgba(36, 36, 36, 0.319);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     position: relative;
-    background-color: var(--white);
-    width: 78%;
+    width: 75%;
+    min-height: 100vh;
     margin: 0 auto;
-    padding: var(--generalPadding) var(--generalPadding) 0;
+    margin-top: 5%;
     overflow-x: hidden;
+    padding: var(--generalPadding) var(--generalPadding) 0;
+    .paper-texture{
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        top: 0;
+        right: 0;
+        left: 0;
+        margin: 0 auto;
+        mix-blend-mode:multiply;
+        z-index: -1;
+        img{
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+        }
+    }
 }
-
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: var(--gray);
+  }
+  ::-webkit-scrollbar-thumb {
+    background: var(--black);
+    border-radius: 0px;
+  }
 .line{
     width: 100%;
     height: 2px;
@@ -171,11 +194,11 @@
     .timeline{
         font-size: var(--verysmallfont);
         display: flex;
-        flex-direction: column;
-        .container{
-            display: flex;
-            justify-content:space-between;
-        }
+        justify-content:space-between;
+        border-top: var(--border);
+        border-bottom: var(--border);
+        padding: 5px 0;
+        margin-bottom: 1.5%;
         a{
             text-decoration: none;
             cursor: pointer;
@@ -238,6 +261,7 @@
     flex-direction: column;
     margin: var(--margin3);
     gap: var(--generalPadding);
+    width: 100%;
     .heading-container{
         display: flex;
         align-items: center;
@@ -254,6 +278,8 @@
     }
     .selected-category{
         color: var(--gray);
+        font-size: var(--contentfont);
+        font-weight: 500;
     }
     select{
         background-color: var(--black);
@@ -275,10 +301,24 @@
     .submit-bt{
         @include buttons(var(--red),var(--white) ,0 );
     }
+    input[type="file"]{
+        border: none;
+        width: 100%;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        &::file-selector-button {
+            background-color: var(--black);
+            color: var(--white);
+            padding: 15px 10px;
+            border: none;
+        }
+    }
 }
 .admin-panel {
     @include headings();
     margin:var(--margin3);
+    width: 100%;
     .tiles {
       display: flex;
       flex-direction: column;
@@ -420,7 +460,8 @@
 
 @media only screen and (max-width: 800px) {
     .App {
-        width: 95%;
+        margin-top: 0;
+        width: 100%;
         padding: 0.9em 0.9em 0;
       }
     #Footer{
@@ -442,5 +483,8 @@
             }
         }
         
+    }
+    .back-bt{
+        display: none;
     }
   }
