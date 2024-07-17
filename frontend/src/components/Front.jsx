@@ -1,17 +1,32 @@
 import React from 'react'
 import { useNavigate} from "react-router-dom";
-
-function Front() {
-    let history=useNavigate();
+import "./style.scss";
+import sticker from "../assets/sticker.svg";
+const RegisterBlock=()=>{
+  let history=useNavigate();
     const Loginclick=()=>{
         history('/signin')
     }
-  return (
-    <div id='me' className='h-screen flex flex-col'>
-    <div className='flex justify-center items-center'><p onClick={Loginclick} className='cursor-pointer'>SIGN-IN</p></div>
-    <div className='h-full flex items-center justify-center w-full'>
+  return(
+    <div className="RegisterBlock">
+      <div>
+        <h1>Make Headlines: Join & Write!</h1>
+        <p className='small-content'>We are always open to take you in</p>
+        <p className='quote'>Transform campus conversations. Write your truth, share widely, and lead change at your university</p>
+      </div>
+      <button onClick={Loginclick}>
+        <img src={sticker}/>
+        Register NOWWW!!
+      </button>
+      
+
     </div>
-    
+  )
+}
+function Front() {
+  return (
+    <div className='Front'>
+      <RegisterBlock/>
   </div>
   )
 }

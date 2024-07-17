@@ -142,7 +142,7 @@
     min-height: 100vh;
     margin: 0 auto;
     margin-top: 5%;
-    overflow-x: hidden;
+    // overflow-x: hidden;
     padding: var(--generalPadding) var(--generalPadding) 0;
     .paper-texture{
         position: absolute;
@@ -253,6 +253,54 @@
     color:var(--red);
     &:hover, &:active{
         color: var(--black);
+    }
+}
+.Front{
+    .RegisterBlock{
+        margin: var(--margin3);
+        display: flex;
+        justify-content:space-between;
+        align-items: center;
+        gap: 20px;
+        @include headings();
+        .small-content{
+            font-size: var(--verysmallfont);
+            color: var(--gray);
+        }
+        .quote{
+            margin-top: 2%;
+            font-size: var(--mediumfont)
+        }
+        .quote::before {
+            content: open-quote;
+            margin-right: 1%;
+          }
+          
+        .quote::after {
+            content: close-quote;
+            margin-left: 1%;
+        }
+        .quote::before,.quote::after {
+            font-size: 2em;
+            font-weight: 900;
+            color: var(--red);
+            line-height: var(--mediumfont);
+        }
+        button{
+            position: relative;
+            background-color: var(--black);
+            color:var(--white);
+            padding:7% 20px;
+            font-size: var(--mediumfont);
+            font-weight: 600;
+            img{
+                position: absolute;
+                transform: scale(0.8);
+                top: -100px;
+                right: -80px;
+            }
+        }
+
     }
 }
 #me{
@@ -463,6 +511,7 @@
         margin-top: 0;
         width: 100%;
         padding: 0.9em 0.9em 0;
+        overflow-x: hidden;
       }
     #Footer{
         padding:1.5% 2.5%;
@@ -470,6 +519,16 @@
             width: 20%;
         }
     }
+    .Front{
+        .RegisterBlock{
+            flex-direction: column;
+            gap: 40px;
+            button{
+                img{
+                    transform: scale(0.5);
+                }
+            }
+        }}
     #Signin,#Signup{
         flex-direction: column;
         .img-container{
