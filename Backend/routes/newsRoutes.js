@@ -1,6 +1,5 @@
 const express = require("express");
 const { createNews, adminNews, newsData, adminApprove, adminDeny, categoryData } = require("../controllers/newsHandler");
-const { authMiddleware} = require("../middleware/authMiddleware");
 const router = express.Router();
 router.post("/createNews",createNews);
 router.get('/newsData',newsData);
