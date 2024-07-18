@@ -9,9 +9,14 @@ function Header() {
   const navigate = useNavigate();
 
   function clickHandler(e) {
-    const selectedCategory = e.target.innerText;
-    setCategory(selectedCategory);
-    navigate(`/content/${selectedCategory}`);
+    if(e.target.innerText==="Home"){
+      navigate(`/content`);
+    }
+    else{
+      const selectedCategory = e.target.innerText;
+      setCategory(selectedCategory);
+      navigate(`/content/${selectedCategory}`);
+    }
   }
 
   useEffect(() => {
@@ -75,20 +80,21 @@ function Header() {
             </div>
       <nav className="navbar">
         {[
-          //"Training and Placement Cell",
-          // "Armed Forces and Motivation Cell",
-          "Career Development Cell",
-          // "International Relation Cell",
-          "Admission Cell",
-          // "Alumni Cell",
-          "Research and Development Cell",
-          "System Support Cell",
-          //"Technical Event Cell",
-          // "Social Responsive Cell",
-          // "R and D Cell",
-          //"Internship Cell",
-          "Entrepreneurship Development Cell",
-          // "Women Empowerment Cell",
+          "Home",
+          "Training and Placement",
+          // "Armed Forces and Motivation",
+          "Career Development",
+          // "International Relation",
+          "Admission",
+          // "Alumni",
+          // "Research and Development",
+          "System Support",
+          //"Technical Event",
+          // "Social Responsive",
+          "R and D",
+          //"Internship",
+          "Entrepreneurship Development",
+          // "Women Empowerment",
         ].map((item, index) => (
           <p key={index} onClick={clickHandler}>
             {item}
