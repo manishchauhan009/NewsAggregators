@@ -43,7 +43,10 @@ function Newsdata({ currentemail }) {
     // formData.append('currentemail', currentemail);
 
     try {
-      const response = await axios.post(`${Url.newsUrl}/createNews`, formData);
+      const token = localStorage.getItem('token');
+      const response = await axios.post(`${Url.newsUrl}/createNews`, formData,{
+        headers: { 'Authorization': `Bearer ${token}` }
+      });
       console.log(response);
       toast.success(`News Request Successfully Sent to ${Dept}`);
     } catch (error) {

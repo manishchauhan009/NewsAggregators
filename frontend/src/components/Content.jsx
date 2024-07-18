@@ -8,10 +8,10 @@ function Content({ currentuser, currentemail }) {
   const navigate = useNavigate();
 
   const getData = async () => {
+    const token = localStorage.getItem('token');
     try {
-      const response = await axios.get(`${Url.newsUrl}/newsData`, {
-        // Adjust params as needed based on your backend API
-        // params: { email: currentemail },
+      const response = await axios.get(`${Url.newsUrl}/newsData`, {},{
+        headers: { 'Authorization': `Bearer ${token}` }
       });
       setData(response.data);
     } catch (error) {

@@ -91,9 +91,12 @@ function CategoryContent() {
   const navigate = useNavigate();
 
   const fetchCategoryData = async () => {
+    const token = localStorage.getItem('token');
     try {
       const response = await axios.post(`${Url.newsUrl}/categoryData`, {
         category: category,
+      },{
+        headers: { 'Authorization': `Bearer ${token}` }
       });
       setData(response.data);
     } catch (error) {
