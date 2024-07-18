@@ -217,7 +217,9 @@
             cursor: pointer;
         }
         p:hover,img:hover{
-            transform: scale(1.1);
+             transform: scale(1.05);
+            // color: var(--red);
+            // text-decoration: underline;
         }
         img{
             width: 3%;
