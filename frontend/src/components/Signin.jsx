@@ -35,7 +35,7 @@ function Signin({ setUserAuth, currentuser, setCurrentEmail, setCurrentUser }) {
       if (response.status === 200) {
         toast.success("Found You!!");
         localStorage.setItem('token',response.data.token);
-        setUserAuth(false)
+        setUserAuth(true)
         setTimeout(() => {
           toast.dismiss();
           history("/content");
