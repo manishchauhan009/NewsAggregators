@@ -1,53 +1,49 @@
-import "./style.scss";
+// import "./style.scss";
 import React, { useState, useEffect } from "react";
 import pfp from "../assets/profile.svg";
 import { useNavigate } from "react-router-dom";
 
-function Header() {
+function Header({ userauth, setUserAuth }) {
   const [time, setTime] = useState(new Date());
-  const [category, setCategory] = useState("");
   const navigate = useNavigate();
 
   function clickHandler(e) {
-    if(e.target.innerText==="Home"){
-      navigate(`/content`);
-    }
-    else{
+    if (userauth) {
       const selectedCategory = e.target.innerText;
-      setCategory(selectedCategory);
-      navigate(`/content/${selectedCategory}`);
+      if (selectedCategory === "Home") {
+        navigate(`/content`);
+      } else {
+        navigate(`/content/${selectedCategory}`);
+      }
+    } else {
+      navigate('/signin');
     }
+  }
+
+  function loginHandler() {
+    navigate('/signin');
+  }
+
+  function logoutHandler() {
+    localStorage.removeItem('token');
+    setUserAuth(false);
+    navigate('/signin');
   }
 
   useEffect(() => {
     const timer = setInterval(() => {
       setTime(new Date());
     }, 1000);
-    return () => clearInterval(timer); // Cleanup the interval on component unmount
+    return () => clearInterval(timer);
   }, []);
 
   const months = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
+    "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December"
   ];
   const days = [
-    "Sunday",
-    "Monday",
-    "Tuesday",
-    "Wednesday",
-    "Thursday",
-    "Friday",
-    "Saturday",
+    "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+    "Friday", "Saturday"
   ];
   const year = time.getFullYear();
   const month = months[time.getMonth()];
@@ -61,10 +57,7 @@ function Header() {
   seconds = checkTime(seconds);
 
   function checkTime(i) {
-    if (i < 10) {
-      i = "0" + i;
-    }
-    return i;
+    return i < 10 ? "0" + i : i;
   }
 
   return (
@@ -74,33 +67,40 @@ function Header() {
         <span>PU TIMES</span>
       </div>
       <div className="timeline">
-                    <span>{hours}: {minutes}: {seconds}</span>
-                    <span>{day}, {date} {month} {year}</span>
-                    <a href='https://paruluniversity.ac.in/' target='_blank'><span>paruluniversity.ac.in</span></a>
-            </div>
-      <nav className="navbar">
+        <span>{`${hours}:${minutes}:${seconds}`}</span>
+        <span>{`${day}, ${date} ${month} ${year}`}</span>
+        <a href='https://paruluniversity.ac.in/' target='_blank' rel="noopener noreferrer">
+          <span>paruluniversity.ac.in</span>
+        </a>
+      </div>
+      <nav className="navbar w-[100%]">
+        <div className="w-[85%] flex justify-start gap-8">
         {[
           "Home",
           "Training and Placement",
-          // "Armed Forces and Motivation",
-          "Career Development",
-          // "International Relation",
-          "Admission",
-          // "Alumni",
-          // "Research and Development",
+          // "Career Development",
           "System Support",
-          //"Technical Event",
-          // "Social Responsive",
           "R and D",
-          //"Internship",
           "Entrepreneurship Development",
-          // "Women Empowerment",
         ].map((item, index) => (
           <p key={index} onClick={clickHandler}>
             {item}
           </p>
         ))}
-        <img src={pfp} alt="Profile" />
+        </div>
+        <div className="w-[25%] flex justify-end gap-5">
+        {userauth ? (
+          <button onClick={logoutHandler} className="text-white font-bold">
+            Logout
+          </button>
+        ) : (
+          <button onClick={loginHandler} className="text-white font-bold">
+            Login
+          </button>
+        )}
+        <img src={pfp} alt="Profile" className="w-[30px]"/>
+        
+        </div>
       </nav>
     </div>
   );

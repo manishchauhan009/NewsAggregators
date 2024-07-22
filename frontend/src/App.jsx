@@ -19,7 +19,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
+        <Header userauth={userauth} setUserAuth={setUserAuth}/>
         <Routes>
           <Route path="/" element={<Front />} />
           <Route
@@ -28,12 +28,12 @@ function App() {
           />
           <Route path="/signup" element={<Signup />} />
           <Route path="/admin" element={<MainAdmin />} />
-          <Route path="/content" element={<Content currentemail={currentemail} currentuser={currentuser} />} />
+          <Route path="/content" element={<Content currentemail={currentemail} currentuser={currentuser} userauth={userauth}/>} />
           <Route path="/newsdata" element={<Newsdata currentemail={currentemail} />} />
-          <Route path="/content/:category" element={<CategoryContent />} />
+          <Route path="/content/:category" element={<CategoryContent userauth={userauth} />} />
         </Routes>
         <Footer />
-        <div className="paper-texture"><img src={paper}/></div>
+        <div className="paper-texture"><img src={paper} alt="Paper texture" /></div>
       </BrowserRouter>
     </div>
   );
