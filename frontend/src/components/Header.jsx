@@ -73,8 +73,7 @@ function Header({ userauth, setUserAuth }) {
           <span>paruluniversity.ac.in</span>
         </a>
       </div>
-      <nav className="navbar w-[100%]">
-        <div className="w-[85%] flex justify-start gap-8">
+      <nav className="navbar">
         {[
           "Home",
           "Training and Placement",
@@ -87,20 +86,22 @@ function Header({ userauth, setUserAuth }) {
             {item}
           </p>
         ))}
+        <div className="profile-container">
+          <div className="login-controls">
+            {userauth ? (
+              <button onClick={logoutHandler} className="">
+                Logout
+              </button>
+            ) : (
+              <button onClick={loginHandler} className="">
+                Login
+              </button>
+            )}
+          </div>
+          <img src={pfp} alt="Profile" className=""/>
         </div>
-        <div className="w-[25%] flex justify-end gap-5">
-        {userauth ? (
-          <button onClick={logoutHandler} className="text-white font-bold">
-            Logout
-          </button>
-        ) : (
-          <button onClick={loginHandler} className="text-white font-bold">
-            Login
-          </button>
-        )}
-        <img src={pfp} alt="Profile" className="w-[30px]"/>
         
-        </div>
+        
       </nav>
     </div>
   );

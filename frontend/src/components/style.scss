@@ -205,13 +205,14 @@
         }
     }
     .navbar{
+        position: relative;
         margin-top: 5px;
         background-color: var(--black);
         display: flex;
         justify-content: space-between;
         align-items: center;
         padding:0.8% 1.5%;
-        p{
+        p, .login-controls{
             color: var(--white);
             font-size: var(--verysmallfont);
             cursor: pointer;
@@ -221,9 +222,30 @@
             // color: var(--red);
             // text-decoration: underline;
         }
-        img{
-            width: 3%;
-            cursor: pointer;
+        .profile-container{
+            img{
+                cursor: pointer;
+            }
+            button{
+                color: var(--white);
+            }
+            .login-controls{
+                display: none;
+                position: absolute;
+                bottom: -80%;
+                right: 0;
+                margin: 0 auto;
+                z-index: 111;
+                background-color: var(--black);
+                padding:0.8% 1.5%;
+                &:hover{
+                    background-color: var(--red);
+                }
+            }
+            &:hover .login-controls {
+                display: block;
+              }
+
         }
     }
 }
