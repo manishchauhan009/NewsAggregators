@@ -29,7 +29,7 @@ function CategoryContent({ userauth }) {
   };
 
   useEffect(() => {
-    // fetchCategoryData();
+    fetchCategoryData();
   }, [category]);
 
   const handleOnClick = () => {
