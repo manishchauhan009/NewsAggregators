@@ -26,7 +26,7 @@ function Content({ currentuser, currentemail, userauth }) {
 
   useEffect(() => {
     if (userauth) {
-      // getData();
+      getData();
     }
   }, [userauth]);
 

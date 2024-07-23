@@ -24,7 +24,7 @@ app.use(cookieParser());
 // CORS middleware configuration
 // app.use(
 //   cors({
-//     origin: "https://news-aggregators.vercel.app", // Allow requests from localhost:3000
+//     origin: "https://localhost:3000", // Allow requests from localhost:3000
 //     methods: ["GET", "POST"], // Allow only GET and POST methods
 //     allowedHeaders: ["Content-Type"], // Allow only Content-Type header
 //   })
