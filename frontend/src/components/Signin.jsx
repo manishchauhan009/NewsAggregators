@@ -38,6 +38,10 @@ function Signin({ setUserAuth, currentuser, setCurrentEmail, setCurrentUser }) {
         setUserAuth(true)
         setTimeout(() => {
           toast.dismiss();
+          if (Email==="admin@gmail.com"){
+            history("/Admin")
+            return
+          }
           history("/content");
         }, 2000);
         toast.loading("Will Redirect");
