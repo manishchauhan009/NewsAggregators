@@ -6,7 +6,7 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tile from "./Tile";
 import DetailedView from "./DetailedView";
-
+import write from '../assets/write.svg';
 function Content({ currentuser, currentemail, userauth }) {
   
   const [data, setData] = useState([]);
@@ -52,15 +52,17 @@ function Content({ currentuser, currentemail, userauth }) {
   return (
     <div className="Content">
       <div className="Userdetails">
-      <p className="">Welcome {currentemail}</p>
-          <button
-            onClick={() => {
-              navigate("/newsdata");
-              window.scrollTo(0, 0);
-            }}
-            className=""
+        {/* <img src="" className="profile-img"/> */}
+        <h1 className="">Welcome {currentemail}</h1>
+        <button
+          onClick={() => {
+            navigate("/newsdata");
+            window.scrollTo(0, 0);
+          }}
+          className=""
           >
-            Request to Upload New Post
+            <img src={write}/>
+            <p>Write an Article</p>
           </button>
       </div>
       <div className="NewsTile-container">
