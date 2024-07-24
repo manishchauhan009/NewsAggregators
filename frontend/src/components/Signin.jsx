@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
+import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import './style.scss';
 import urls from "../Url";
@@ -18,6 +19,24 @@ function Signin({ setUserAuth, currentuser, setCurrentEmail, setCurrentUser }) {
   const Signup = () => {
     Navigate("/signup");
   };
+  useEffect(()=>{
+    console.log("working")
+    const token = localStorage.getItem('token');
+    console.log(token)
+    if (token===null){
+      history("/signin")
+      return
+    }
+
+      const decoded=jwtDecode(token)
+      console.log(decoded)
+      setCurrentEmail(decoded.Email)
+      setCurrentUser(null)
+      setUserAuth(true)
+      history("/content")
+
+
+  },[])
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -29,12 +48,11 @@ function Signin({ setUserAuth, currentuser, setCurrentEmail, setCurrentUser }) {
 
       setCurrentUser(Username);
       setCurrentEmail(Email);
-      console.log(response);
-      console.log(response.data);
 
       if (response.status === 200) {
         toast.success("Found You!!");
         localStorage.setItem('token',response.data.token);
+        console.log(response.data.token)
         setUserAuth(true)
         setTimeout(() => {
           toast.dismiss();

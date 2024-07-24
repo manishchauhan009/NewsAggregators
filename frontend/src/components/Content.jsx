@@ -8,8 +8,9 @@ import Tile from "./Tile";
 import DetailedView from "./DetailedView";
 
 function Content({ currentuser, currentemail, userauth }) {
+  
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const getData = async () => {
@@ -27,15 +28,17 @@ function Content({ currentuser, currentemail, userauth }) {
   };
 
   useEffect(() => {
+    console.log(loading)
     if (userauth) {
       getData();
     }
+    else{
+      navigate("/signin");
+
+    }
   }, [userauth]);
 
-  if (!userauth) {
-    navigate("/signin");
-    return null;
-  }
+
 
   return (
     <div className="Content">
