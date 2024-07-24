@@ -52,7 +52,15 @@ function Header({ userauth, setUserAuth }) {
   let hours = time.getHours();
   let minutes = time.getMinutes();
   let seconds = time.getSeconds();
+  const items = [
+    'Home', 'Training and Placement', 'System Support', 'R and D', 
+    'Entrepreneurship Development', 'Career Development', 'Admission', 'Social responsive',
+    'International relations', 'Women Empowerment', 'Technical Events', 'Alumni'
+  ];
 
+  const [first5Items] = useState(items.slice(0, 5));
+  const [remainingItems] = useState(items.slice(5));
+  
   minutes = checkTime(minutes);
   seconds = checkTime(seconds);
 
@@ -74,18 +82,18 @@ function Header({ userauth, setUserAuth }) {
         </a>
       </div>
       <nav className="navbar">
-        {[
-          "Home",
-          "Training and Placement",
-          // "Career Development",
-          "System Support",
-          "R and D",
-          "Entrepreneurship Development",
-        ].map((item, index) => (
-          <p key={index} onClick={clickHandler}>
+        {first5Items.map((item, index) => (
+          <p key={index} onClick={clickHandler} className="nav-item">
             {item}
           </p>
         ))}
+        <p className="more">More
+          <div className="dropdown">
+          {remainingItems.map((item, index) => (
+                <p key={index} className="dropdown-item" onClick={clickHandler}>{item}</p>
+              ))}
+          </div>
+        </p>
         <div className="profile-container">
           <div className="login-controls">
             {userauth ? (

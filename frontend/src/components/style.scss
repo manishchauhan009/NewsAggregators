@@ -212,35 +212,56 @@
         justify-content: space-between;
         align-items: center;
         padding:0.8% 1.5%;
-        p, .login-controls{
+        .nav-item , .login-controls, .more, .dropdown-item{
+            position: relative;
             color: var(--white);
             font-size: var(--verysmallfont);
             cursor: pointer;
+            &:hover, &:active{
+                transform: scale(1.05);
+            }
         }
-        p:hover,img:hover{
+        img:hover{
              transform: scale(1.05);
             // color: var(--red);
             // text-decoration: underline;
         }
+        .more:hover .dropdown {
+            display: flex;
+          }
+          .dropdown {
+            display: none;
+            position: absolute;
+            flex-direction: column;
+            gap: 8px;
+            background-color:var(--black);
+            text-align: center;
+            margin:0 -100%;
+            top: 100%;
+            padding: 10px;
+            min-width: 100px;
+            z-index: 1;
+          }
         .profile-container{
+            position: relative;
             img{
                 cursor: pointer;
+
             }
             button{
                 color: var(--white);
+                padding: 10px;
+                &:hover{
+                    font-weight: 600;
+                }
             }
             .login-controls{
                 display: none;
                 position: absolute;
-                bottom: -80%;
-                right: 0;
-                margin: 0 auto;
+                top: 100%;
+                right: -13px;
                 z-index: 111;
                 background-color: var(--black);
-                padding:0.8% 1.5%;
-                &:hover{
-                    background-color: var(--red);
-                }
             }
             &:hover .login-controls {
                 display: block;
