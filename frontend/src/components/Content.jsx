@@ -10,7 +10,7 @@ import DetailedView from "./DetailedView";
 function Content({ currentuser, currentemail, userauth }) {
   
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const navigate = useNavigate();
 
   const getData = async () => {
@@ -23,7 +23,6 @@ function Content({ currentuser, currentemail, userauth }) {
     } catch (error) {
       console.error("Error fetching data", error);
     } finally {
-      setLoading(false);
     }
   };
 
@@ -38,6 +37,16 @@ function Content({ currentuser, currentemail, userauth }) {
     }
   }, [userauth]);
 
+  useEffect(()=>{
+    console.log(data,"inside")
+    if (data.length===0){
+      return
+    }
+    setTimeout(()=>{
+      setLoading(false)
+
+    },[2000])
+  },[data])
 
 
   return (
