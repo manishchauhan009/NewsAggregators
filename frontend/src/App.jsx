@@ -42,7 +42,7 @@ function App() {
           <Route path="/content" element={<Content currentemail={currentemail} currentuser={currentuser} userauth={userauth}/>} />
           <Route path="/newsdata" element={<Newsdata currentemail={currentemail} />} />
           <Route path="/content/:category" element={<CategoryContent userauth={userauth} />} />
-          <Route path="/news/:id" element={<DetailedView data={data} />} />
+          <Route path="/news" element={<DetailedView data={data} />} />
         </Routes>
         <Footer />
         <div className="paper-texture"><img src={paper} alt="Paper texture" /></div>
