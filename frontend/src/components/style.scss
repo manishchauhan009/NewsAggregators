@@ -498,7 +498,13 @@
       }
     }
   }
-
+.Content{
+    display: flex;
+    flex-direction: column;
+    .Userdetails{
+        display: flex;
+    }
+}
 
 
 
