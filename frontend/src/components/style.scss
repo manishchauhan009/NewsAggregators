@@ -276,7 +276,7 @@
     font-size: clamp(2.4rem,3vw,5rem);
     color:var(--red);
     &:hover, &:active{
-        color: var(--black);
+        filter: brightness(95%);
     }
 }
 .Front{
@@ -509,11 +509,11 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        .profile-img{
-            width: 200px;
-            height: 100%;
-            background-color: #8f0e0e;
-        }
+        // .profile-img{
+        //     width: 200px;
+        //     height: 100%;
+        //     background-color: #8f0e0e;
+        // }
         button{
             background-color: var(--red);
             display: flex;
@@ -523,8 +523,9 @@
             gap: 10px;
             height: 250px;
             width: 250px;
+            padding: 0 5%;
             img{
-                width: 40%;
+                width: 50%;
             }
             p{
                 color: var(--white);
@@ -586,6 +587,58 @@
         img{
             filter: none;
         }
+    }
+}
+.DetailedView{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 1rem;
+    margin: var(--margin3);
+    @include headings();
+    h1{
+        color: var(--black);
+    }
+    .little-things{
+        font-size: var(--verysmallfont);
+        display: flex;
+        flex-direction: column;
+        gap: 3px;
+        p{color: var(--gray);}
+    }
+    .extras{
+        display: flex;
+        align-items: center;
+        gap: var(--generalPadding);
+        img{
+            width: 15px;
+            color: var(--gray);
+            cursor: pointer;
+            &:hover, &:active{
+                transform: scale(1.1);
+            }
+        }
+        .likes{
+            display: flex;
+            color: var(--gray);
+            font-size: var(--verysmallfont);
+            img{
+                margin-left: 5px;
+            }
+        }
+    }
+    .img-container{
+        width: 100%;
+        height: 70vh;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    }
+    .content{
+        font-size: var(--contentfont);
+        color: var(--black);
     }
 }
 

@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import Url from '../Url';
-
+import like from "../assets/like.svg";
+import share from "../assets/share.svg";
+import feedback from "../assets/feedback.svg";
+import report from "../assets/report.svg"
 function DetailedView() {
   const { id } = useParams();
   const [newsItem, setNewsItem] = useState(null);
@@ -22,26 +25,30 @@ function DetailedView() {
   if (!newsItem) return <p>News item not found</p>;
 
   return (
-    <div className="p-4 bg-gray-100 min-h-screen">
-      <div className="mb-6 p-4 rounded-lg bg-white shadow-md">
-        <h2 className="text-2xl font-bold mb-2">{newsItem.Title}</h2>
-        <p className="text-gray-600 mb-2">Owner: {newsItem.Owner}</p>
-        <p className="text-gray-600 mb-2">Group: {newsItem.Group}</p>
-        <p className="text-gray-600 mb-2">Date: {newsItem.Date}</p>
-        <img
-          src={newsItem.imgUrl}
-          alt={newsItem.Title}
-          className="w-full h-[28rem] object-cover mb-4 rounded-lg"
-        />
-        <p className="text-gray-800 mb-4">{newsItem.Content}</p>
-        <div className="flex justify-between text-sm">
-          <span className="text-green-600">Likes: {newsItem.Like}</span>
-          <span className="text-red-600">Reports: {newsItem.Reported}</span>
-          <span className="text-blue-600">
-            Approved: {newsItem.Approved ? "Yes" : "No"}
+    <div className="DetailedView">
+        <h1 className="">{newsItem.Title}</h1>
+        <div className="little-things">
+          <p className="">Author: {newsItem.Owner}</p>
+          <p className="">Category: {newsItem.Group}</p>
+          <p className="">{newsItem.Date}</p>
+          <div className="extras">
+          <span className='likes'>
+          {newsItem.Like}
+          <img src={like} title='like article'/>
           </span>
+          <img src={share} title='share article'/>
+          <a href="mailto:support@yourwebsite.com?subject=Support Inquiry&body=Hello, I need help with..."><img src={feedback} title='share feedback'/></a>
+          <img src={report} title='report article'/>
         </div>
-      </div>
+        </div>
+        <div className="img-container">
+          <img
+            src={newsItem.imgUrl}
+            alt={newsItem.Title}
+            className=""
+          />
+        </div>
+        <p className="content">{newsItem.Content}</p>
     </div>
   );
 }

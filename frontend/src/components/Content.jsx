@@ -69,7 +69,7 @@ function Content({ currentuser, currentemail, userauth }) {
             {loading ? (
               Array.from({ length: 3 }).map((_, index) => (
                 <div key={index} className="mb-6 p-4 rounded-lg bg-white shadow-md w-[60vw]">
-                  <h2 className="text-2xl font-bold mb-2">
+                  {/* <h2 className="text-2xl font-bold mb-2">
                     <Skeleton width={`80%`} height={30} />
                   </h2>
                   <p className="text-gray-600 mb-2"><Skeleton width={`60%`} height={20} /></p>
@@ -81,7 +81,7 @@ function Content({ currentuser, currentemail, userauth }) {
                     <span className="text-green-600"><Skeleton width={50} height={20} /></span>
                     <span className="text-red-600"><Skeleton width={50} height={20} /></span>
                     <span className="text-blue-600"><Skeleton width={50} height={20} /></span>
-                  </div>
+                  </div> */}
                 </div>
               ))
             ) : data.length > 0 ? (
