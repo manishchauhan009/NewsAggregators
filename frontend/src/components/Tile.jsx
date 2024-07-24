@@ -8,7 +8,7 @@ function Tile({ newsItem }) {
 
   const handleClick = () => {
     navigate(`/news/${newsItem.id}`);
-    console.log(id)
+    console.log(newsItem.id)
   };
   return (
     <div className="NewsTile" onClick={handleClick}>
