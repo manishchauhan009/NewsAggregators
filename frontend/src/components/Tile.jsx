@@ -7,8 +7,9 @@ function Tile({ newsItem }) {
     const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate(`/news/${newsItem.id}`);
-    console.log(newsItem.id)
+    const encodedobject=encodeURIComponent(JSON.stringify(newsItem))
+    console.log(encodedobject,"encodedobject")
+    navigate(`/news?data=${encodedobject}`);
   };
   return (
     <div className="NewsTile" onClick={handleClick}>

@@ -9,20 +9,14 @@ function DetailedView() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    console.log('Fetching data for ID:', id);
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(`${Url.newsUrl}/news/${id}`);
-        setNewsItem(response.data);
-      } catch (error) {
-        console.error("Error fetching news item", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+    const query = new URLSearchParams(window.location.search);
+    const data = query.get('data');
+    const decodedObject = JSON.parse(decodeURIComponent(data));
+    setLoading(false)
+    setNewsItem(decodedObject)
+    
 
-    fetchData();
-  }, [id]);
+  }, []);
 
   if (loading) return <p>Loading...</p>;
   if (!newsItem) return <p>News item not found</p>;
