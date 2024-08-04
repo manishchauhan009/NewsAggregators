@@ -2,7 +2,7 @@ const express=require("express");
 const router=express.Router();
 
 const {register, login, adminLogin,adminRegister}=require("../controllers/authHandler");
-const { isAdmin} = require("../middleware/authMiddleware");
+const { isAdmin, authMiddleware} = require("../middleware/authMiddleware");
 
 
 router.post("/register", register);

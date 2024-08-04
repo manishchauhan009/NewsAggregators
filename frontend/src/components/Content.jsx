@@ -16,7 +16,7 @@ function Content({ currentuser, currentemail, userauth }) {
   const getData = async () => {
     const token = localStorage.getItem("token");
     try {
-      const response = await axios.get(`${Url.newsUrl}/newsData`, {
+      const response = await axios.get(`${Url.newsUrl}/ownernewsData`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setData(response.data);

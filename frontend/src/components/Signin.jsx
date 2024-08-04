@@ -70,6 +70,9 @@ function Signin({ setUserAuth, currentuser, setCurrentEmail, setCurrentUser }) {
         }, 2000);
         toast.loading("Will Redirect..");
       }
+      else if (response.status===800){
+        toast.error("Email Regex Aroused!");
+      }
       else {
         toast.error("Credentials are Not Matching!");
         setTimeout(() => {
