@@ -10,23 +10,22 @@ const RegisterBlock=()=>{
   const [data, setData] = useState([]);
   const getData = async () => {
     try {
-      const response = await axios.get(`${Url.newsUrl}/approvednewsdata`);
+      const response = await axios.get(`${Url.newsUrl}/approvednewsData`);
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data", error);
     } finally {
     }
   };
+
+
   useEffect(()=>{
     getData();
   },[])
   useEffect(()=>{
     if (data.length>0){
       console.log(data)
-
     }
-    
-
   },[data])
   let history=useNavigate();
     const Loginclick=()=>{

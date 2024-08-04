@@ -1,6 +1,7 @@
 const News = require("../models/newsDataSchema");
 const cloudinary = require("cloudinary").v2;
-
+require("dotenv").config();
+const jwt = require("jsonwebtoken");
 function isFileTypeSupported(type, supportedType) {
   return supportedType.includes(type);
 }
@@ -95,13 +96,29 @@ const adminDeny = async (req, res) => {
 
 
 const newsData = async (req, res) => {
+  const token= req.headers['authorization']?.split(" ")[1]
+  const user=jwt.verify(token,process.env.JWT_SECRET)
+  console.log(user)
+
+
   try {
-    const news = await News.find({ Approved: true }).sort({ createdAt: -1 });
+    const news = await News.find({ Owner: user.Email }).sort({ createdAt: -1 });
     res.json(news);
+
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
 }
+const newsdataall = async (req, res) => {
+  try {
+    const news1 = await News.find({ Approved: true }).sort({ createdAt: -1 });
+    res.json(news1);
+
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+}
+
 
 const categoryData = async (req, res) => {
   const {category} = req.body;
@@ -115,4 +132,4 @@ const categoryData = async (req, res) => {
   }
 }
 
-module.exports = { createNews, adminNews, adminApprove, adminDeny, newsData, categoryData };
+module.exports = { createNews, adminNews, adminApprove, adminDeny, newsData, categoryData,newsdataall };
