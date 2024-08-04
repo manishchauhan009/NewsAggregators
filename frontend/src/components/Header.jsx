@@ -11,7 +11,7 @@ function Header({ userauth, setUserAuth }) {
     if (userauth) {
       const selectedCategory = e.target.innerText;
       if (selectedCategory === "Home") {
-        navigate(`/content`);
+        navigate(`/`);
       } else {
         navigate(`/content/${selectedCategory}`);
       }
@@ -106,7 +106,9 @@ function Header({ userauth, setUserAuth }) {
               </button>
             )}
           </div>
-          <img src={pfp} alt="Profile" className=""/>
+          <img onClick={()=>{
+            navigate("/content")
+          }} src={pfp} alt="Profile" className=""/>
         </div>
         
         

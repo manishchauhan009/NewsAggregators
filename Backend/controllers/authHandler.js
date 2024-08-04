@@ -15,15 +15,7 @@ const register = async (req, res) => {
 
   try {
     if (isValidGmail(userData.Email)) {
-      // if (userData.Password !== userData.ConfirmPassword) {
-      //   return res
-      //     .status(401)
-      //     .json({
-      //       success: false,
-      //       message: "Password and Confirm Password do not match",
-      //     });
-      // }
-
+      
       const existingUser = await User.findOne({ Email: userData.Email });
       if (existingUser) {
         return res
@@ -95,8 +87,6 @@ const login = async (req, res) => {
     .status(800)
     .send("Error Checking User Credentials. Please Try Again Later");
   }
-
-  
 };
 
 const adminRegister = async (req, res) => {
