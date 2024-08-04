@@ -68,7 +68,7 @@ function Content({ currentuser, currentemail, userauth }) {
       <div className="NewsTile-container">
             {loading ? (
               Array.from({ length: 3 }).map((_, index) => (
-                <div key={index} className="mb-6 p-4 rounded-lg bg-white shadow-md w-[60vw]">
+                <div key={index} className="">
                   {/* <h2 className="text-2xl font-bold mb-2">
                     <Skeleton width={`80%`} height={30} />
                   </h2>
