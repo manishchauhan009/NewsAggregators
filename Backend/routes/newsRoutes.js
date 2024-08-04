@@ -4,6 +4,8 @@ const { authMiddleware} = require("../middleware/authMiddleware");
 const router = express.Router();
 router.post("/createNews", authMiddleware,createNews);
 router.get('/newsData',authMiddleware, newsData);
+
+router.get('/approvednewsdata',newsData)
 router.get("/admin/news", adminNews);
 router.post('/admin/approve', adminApprove);
 router.post('/admin/deny', adminDeny);

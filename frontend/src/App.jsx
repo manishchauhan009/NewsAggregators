@@ -19,13 +19,13 @@ function App() {
   const [currentemail, setCurrentEmail] = useState("");
   const [data, setData] = useState([]);
 
-  React.useEffect(() => {
-    // Fetch data here and set it to the state
-    // This is just a placeholder for your actual data fetching logic
-    axios.get(`${Url.newsUrl}/news`)
-      .then(response => setData(response.data))
-      .catch(error => console.error("Error fetching data", error));
-  }, []);
+  // React.useEffect(() => {
+  //   // Fetch data here and set it to the state
+  //   // This is just a placeholder for your actual data fetching logic
+  //   axios.get(`${Url.newsUrl}/news`)
+  //     .then(response => setData(response.data))
+  //     .catch(error => console.error("Error fetching data", error));
+  // }, []);
 
   return (
     <div className="App">

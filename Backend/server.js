@@ -36,6 +36,7 @@ app.use("/api/news", newsRoutes);
 // Route middleware for user-related endpoints
 app.use("/api/user", userRoutes);
 
+
 app.use(notFound);
 app.use(errorHandler);
 
