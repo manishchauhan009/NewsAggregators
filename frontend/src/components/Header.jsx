@@ -8,16 +8,13 @@ function Header({ userauth, setUserAuth }) {
   const navigate = useNavigate();
 
   function clickHandler(e) {
-    if (userauth) {
       const selectedCategory = e.target.innerText;
       if (selectedCategory === "Home") {
         navigate(`/`);
       } else {
         navigate(`/content/${selectedCategory}`);
-      }
-    } else {
-      navigate('/signin');
-    }
+      
+    } 
   }
 
   function loginHandler() {
