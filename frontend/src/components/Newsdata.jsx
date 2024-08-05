@@ -40,7 +40,10 @@ function Newsdata({ currentemail }) {
     formData.append('Like', Like);
     formData.append('Reported', Reported);
     formData.append('Approved', Approved);
+
+
     // formData.append('currentemail', currentemail);
+    
 
     try {
       const token = localStorage.getItem('token');
@@ -55,8 +58,9 @@ function Newsdata({ currentemail }) {
   };
 
   return (
+
     <div id="me" className="news-data-container">
-      <Toaster />
+      <Toaster/>
       <div className="heading-container">
         <button onClick={() => route("/content")} className="back-bt">&#129136;</button>
         <h1>You are Writing an Article</h1>
