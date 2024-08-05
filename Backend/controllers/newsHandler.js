@@ -1,4 +1,5 @@
 const News = require("../models/newsDataSchema");
+const user=require("../models/newsUserSchema")
 const cloudinary = require("cloudinary").v2;
 require("dotenv").config();
 const jwt = require("jsonwebtoken");
@@ -132,4 +133,37 @@ const categoryData = async (req, res) => {
   }
 }
 
-module.exports = { createNews, adminNews, adminApprove, adminDeny, newsData, categoryData,newsdataall };
+const verifylike = async (req, res) => {
+  const newsid=req.body
+  if (newsid.currentemail===""){
+    console.log("Not signed in")
+    res.send("0")
+
+  }
+  else{
+    
+    const news1=await user.find({ Email: newsid.currentemail })
+    console.log(news1[0].newsItems)
+  
+    if (news1[0].newsItems.includes(newsid.newsid)){
+      console.log("already existss")
+      res.send("0")
+      return
+    }
+  
+    // if (!news1[currentemail].includes(newsid.newsid)){
+  
+    // }
+    const news=await user.updateOne({Email:newsid.currentemail},{ $push: { newsItems: newsid.newsid } })
+  
+    const result = await News.updateOne(
+      { _id: newsid.newsid }, // Filter by document ID
+      { $inc: { Like: 1 } } // Set the `Like` field to 1
+    );
+    res.send("1")
+
+  }
+ 
+};
+
+module.exports = { createNews, adminNews, adminApprove, adminDeny, newsData, categoryData,newsdataall,verifylike };

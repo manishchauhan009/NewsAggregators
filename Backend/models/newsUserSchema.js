@@ -9,7 +9,12 @@ const newsUserSchema = new mongoose.Schema({
         type: String,
         enum: ['admin', 'user'],
         default:'user'  // Enum restricts the role to 'admin' or 'user'
-    }
+    },
+    currentemail: {
+        type: String, // The email address
+        required: false // Ensure the email field is provided
+      },
+      newsItems: [String]
 });
 
 // Export the mongoose model based on the schema

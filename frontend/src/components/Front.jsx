@@ -5,7 +5,8 @@ import Url from "../Url";
 import { useNavigate} from "react-router-dom";
 import "./style.scss";
 import sticker from "../assets/sticker.svg";
-const RegisterBlock=()=>{
+const RegisterBlock=({currentemail})=>{
+  
   let loading=false;
   const [data, setData] = useState([]);
   const getData = async () => {
@@ -43,7 +44,7 @@ const RegisterBlock=()=>{
               ))
             ) : data.length > 0 ? (
               data.map((newsItem, index) => (
-                <Tile key={index} newsItem={newsItem}/>
+                <Tile key={index} currentemail={currentemail} newsItem={newsItem}/>
               ))
             ) : (
               <p className="text-center text-gray-600">No news data available.</p>
@@ -69,11 +70,11 @@ const RegisterBlock=()=>{
     </div>
   )
 }
-function Front() {
+function Front({currentemail}) {
 
   return (
     <div className='Front'>
-      <RegisterBlock/>
+      <RegisterBlock currentemail={currentemail}/>
   </div>
   )
 }

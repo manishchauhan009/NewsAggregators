@@ -30,9 +30,9 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header userauth={userauth} setUserAuth={setUserAuth}/>
+        <Header userauth={userauth} setCurrentEmail={setCurrentEmail} setUserAuth={setUserAuth}/>
         <Routes>
-          <Route path="/" element={<Front />} />
+          <Route path="/" element={<Front currentemail={currentemail}  />} />
           <Route
             path="/signin"
             element={<Signin setUserAuth={setUserAuth} setCurrentEmail={setCurrentEmail} setCurrentUser={setCurrentUser} />}
