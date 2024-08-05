@@ -19,6 +19,7 @@ function Newsdata({ currentemail }) {
   const [Content, setContent] = useState("");
   const [imgUrl, setImgUrl] = useState(null);
 
+  const navigate=useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleContentChange = (e) => setContent(e.target.value);
   const handleFileChange = (e) => setImgUrl(e.target.files[0]);
@@ -62,10 +63,7 @@ function Newsdata({ currentemail }) {
 
     <div id="me" className="news-data-container">
       <Toaster/>
-      <div className="heading-container">
-        <button onClick={() => route("/content")} className="back-bt">&#129136;</button>
-        <h1>You are Writing an Article</h1>
-      </div>
+        <h1><button title='go back' className='back-bt' onClick={()=>{navigate(`/content`);}}>&#129128;</button>You are Writing an Article</h1>
       <form onSubmit={formSubmit} className="news-form">
         <label>
           Title

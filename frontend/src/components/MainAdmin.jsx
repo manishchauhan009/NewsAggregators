@@ -10,6 +10,7 @@ function MainAdmin() {
   const [isAdmin, setIsAdmin] = useState(false);
   const [data, setData] = useState([]);
   const [selectedElement, setSelectedElement] = useState(null);
+  const navigate = useNavigate();
 
   const isAdminFunc = async () => {
     const token = localStorage.getItem('token');
@@ -92,6 +93,10 @@ function MainAdmin() {
     setSelectedElement(null);
   };
 
+  const goBack =()=>{
+    navigate(`/content`);
+  }
+
   const Tile = ({ element }) => (
     <div className='tile'>
       <div onClick={() => handleTileClick(element)}>
@@ -124,7 +129,7 @@ function MainAdmin() {
       <Toaster />
       {isAdmin ? (
         <div className='admin-panel'>
-          <h1>Admin Panel</h1>
+          <h1><button title='go back' className='back-bt' onClick={goBack}>&#129128;</button>Admin Panel</h1>
           <div className='tiles'>
             {data.map((element) => (
               <Tile key={element._id} element={element} />

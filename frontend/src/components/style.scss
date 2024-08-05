@@ -295,10 +295,11 @@
     @include headings();
 }
 .back-bt{
-    font-size: clamp(2.4rem,3vw,5rem);
     color:var(--red);
+    margin-right: 10px;
     &:hover, &:active{
-        filter: brightness(95%);
+        background-color: var(--red);
+        color: var(--white);
     }
 }
 .Front{
@@ -359,7 +360,10 @@
                 width: 80%;
                 top: -70px;
                 right: -70px;
-                // animation: rotating 10s linear infinite;
+                &:hover, &:active{
+                    animation: rotating 10s linear infinite;
+                }
+                // 
                 // &:hover{
                 //     animation: none;
                 // }
@@ -542,15 +546,28 @@
     flex-direction: column;
     gap: var(--generalPadding);
     @include headings();
+    h2{
+        font-size: clamp(1rem,3vw,3rem);
+        font-weight: 600;
+        color: var(--black);
+    }
     .Userdetails{
         display: flex;
         align-items: center;
-        justify-content: space-between;
+        justify-content:space-between;
         // .profile-img{
         //     width: 200px;
         //     height: 100%;
         //     background-color: #8f0e0e;
         // }
+        .approval-bt{
+            @include buttons(var(--black),var(--white) , );
+            padding: 0 5%;
+            margin-right: var(--generalPadding);
+            P{
+                margin-top: -20px;
+            }
+        }
         button{
             background-color: var(--red);
             display: flex;
@@ -558,16 +575,21 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            height: 250px;
-            width: 250px;
+            height: 200px;
+            width: 220px;
             padding: 0 5%;
             img{
-                width: 50%;
+                width: 70%;
             }
             p{
                 color: var(--white);
                 font-weight: 500;
                 font-style: italic;
+            }
+            span{
+                color: var(--white);
+                font-weight: 500;
+                font-size: 70px;
             }
             &:hover, &:active{
                 filter: brightness(95%);
@@ -608,7 +630,7 @@
         }
     }
     h2{
-        font-size: clamp(1rem,2vw,2rem);
+        font-size: clamp(1rem,1.5vw,2rem);
         font-weight: 600;
     }
     .owner, .likes, .date{
@@ -780,9 +802,6 @@
             }
         }
         
-    }
-    .back-bt{
-        display: none;
     }
     .Content{
         .Userdetails{

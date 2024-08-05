@@ -63,12 +63,15 @@ function Content({ currentuser, currentemail, userauth }) {
       <div className="Userdetails">
         {/* <img src="" className="profile-img"/> */}
         <h1 className="">Welcome {currentemail}</h1>
-        {flag&&<button onClick={()=>{
+        {flag&&<button className="approval-bt" onClick={()=>{
           if (currentemail==="admin@gmail.com"){
             navigate("/admin")
 
           }
-        }}>Check New Request</button>}
+        }}>
+          <span>&#x2611;</span>
+          <p>Approvals</p>
+          </button>}
         <button
           onClick={() => {
             navigate("/newsdata");
@@ -80,6 +83,7 @@ function Content({ currentuser, currentemail, userauth }) {
             <p>Write an Article</p>
           </button>
       </div>
+      {/* <h2>Your Publishes</h2> */}
       <div className="NewsTile-container">
             {loading ? (
               Array.from({ length: 3 }).map((_, index) => (

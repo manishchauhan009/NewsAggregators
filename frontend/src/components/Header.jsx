@@ -1,6 +1,7 @@
 // import "./style.scss";
 import React, { useState, useEffect } from "react";
 import pfp from "../assets/profile.svg";
+
 import { useNavigate } from "react-router-dom";
 
 function Header({ userauth, setUserAuth,setCurrentEmail }) {
@@ -106,7 +107,7 @@ function Header({ userauth, setUserAuth,setCurrentEmail }) {
           </div>
           <img onClick={()=>{
             navigate("/content")
-          }} src={pfp} alt="Profile" className=""/>
+          }} src={pfp} alt="Profile" className="" title="go to profile"/>
         </div>
         
         
