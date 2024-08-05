@@ -74,18 +74,18 @@ function Newsdata({ currentemail }) {
         <label>
           Category
           <select onChange={(e) => setDept(e.target.value)} className="category-select">
+          <option value="General">General</option>
+
             <option value="Training and Placement">Training and Placement Cell</option>
             <option value="Armed Forces and Motivation">Armed Forces and Motivation Cell</option>
             <option value="Career Development">Career Development Cell</option>
-            <option value="International Relation">International Relation Cell</option>
+            <option value="International Relations">International Relation Cell</option>
             <option value="Admission">Admission Cell</option>
             <option value="Alumni">Alumni Cell</option>
             <option value="Research and Development">Research and Development Cell</option>
             <option value="System Support">System Support Cell</option>
             <option value="Technical Event">Technical Event Cell</option>
             <option value="Social Responsive">Social Responsive Cell</option>
-            <option value="R and D">R and D Cell</option>
-            <option value="Internship">Internship Cell</option>
             <option value="Entrepreneurship Development">Entrepreneurship Development Cell</option>
             <option value="Women Empowerment">Women Empowerment Cell</option>
           </select>
