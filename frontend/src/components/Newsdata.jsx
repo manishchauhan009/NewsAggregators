@@ -43,7 +43,7 @@ function Newsdata({ currentemail }) {
 
 
     // formData.append('currentemail', currentemail);
-    
+
 
     try {
       const token = localStorage.getItem('token');
@@ -51,6 +51,7 @@ function Newsdata({ currentemail }) {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       toast.success(`News Request Successfully Sent to ${Dept}`);
+      route("/content")
     } catch (error) {
       console.error(error);
       toast.error("Error submitting news request");
