@@ -8,6 +8,7 @@ import Tile from "./Tile";
 import DetailedView from "./DetailedView";
 import write from '../assets/write.svg';
 function Content({ currentuser, currentemail, userauth }) {
+  const [flag,setflag]=useState(false);
   
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,18 +49,26 @@ function Content({ currentuser, currentemail, userauth }) {
     },[2000])
   },[data])
 
+  useEffect(()=>{
+    if (currentemail==="admin@gmail.com"){
+      setflag(true)
+
+    }
+
+  },[])
+
 
   return (
     <div className="Content">
       <div className="Userdetails">
         {/* <img src="" className="profile-img"/> */}
         <h1 className="">Welcome {currentemail}</h1>
-        <button onClick={()=>{
+        {flag&&<button onClick={()=>{
           if (currentemail==="admin@gmail.com"){
             navigate("/admin")
 
           }
-        }}>Check New Request</button>
+        }}>Check New Request</button>}
         <button
           onClick={() => {
             navigate("/newsdata");
