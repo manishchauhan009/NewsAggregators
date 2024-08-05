@@ -63,6 +63,8 @@ app.use(
   })
 );
 
+app.options('*', cors());
+
 // Route middleware for news-related endpoints
 app.use("/api/news", newsRoutes);
 // Route middleware for user-related endpoints
