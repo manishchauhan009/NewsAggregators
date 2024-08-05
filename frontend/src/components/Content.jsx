@@ -54,6 +54,12 @@ function Content({ currentuser, currentemail, userauth }) {
       <div className="Userdetails">
         {/* <img src="" className="profile-img"/> */}
         <h1 className="">Welcome {currentemail}</h1>
+        <button onClick={()=>{
+          if (currentemail==="admin@gmail.com"){
+            navigate("/admin")
+
+          }
+        }}>Check New Request</button>
         <button
           onClick={() => {
             navigate("/newsdata");
