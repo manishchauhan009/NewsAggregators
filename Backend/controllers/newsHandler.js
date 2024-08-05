@@ -17,7 +17,7 @@ async function uploadToCloudinary(file, folder, quality) {
 }
 
 const createNews = async (req, res) => {
-  res.setHeader("Access-Control-Allow-Headers", "X-Requested-With, content-type");
+  res.set('Access-Control-Allow-Origin', '*');
 
 
   const newsData = req.body;
