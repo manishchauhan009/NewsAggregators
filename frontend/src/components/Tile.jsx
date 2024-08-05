@@ -10,6 +10,7 @@ function Tile({ newsItem,currentemail }) {
     const encodedobject=encodeURIComponent(JSON.stringify(newsItem))
     console.log(encodedobject,"encodedobject")
     navigate(`/news?auth=${currentemail}&data=${encodedobject}`);
+    window.scrollTo(0, 0);
   };
   return (
     <div className="NewsTile" onClick={handleClick}>
