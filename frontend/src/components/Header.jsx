@@ -52,7 +52,7 @@ function Header({ userauth, setUserAuth,setCurrentEmail }) {
   let seconds = time.getSeconds();
   const items = [
     'Home','General', 'Training and Placement', 'System Support', 
-    'Entrepreneurship Development', 'Career Development', 'Admission', 'Social responsive',
+    'Entrepreneurship Development','Research and Development', 'Career Development', 'Admission', 'Social responsive',
     'International relations', 'Women Empowerment', 'Technical Events', 'Alumni'
   ];
 
