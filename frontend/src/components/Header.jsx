@@ -51,7 +51,7 @@ function Header({ userauth, setUserAuth,setCurrentEmail }) {
   let minutes = time.getMinutes();
   let seconds = time.getSeconds();
   const items = [
-    'Home', 'Training and Placement', 'System Support', 'R and D', 
+    'Home','General', 'Training and Placement', 'System Support', 
     'Entrepreneurship Development', 'Career Development', 'Admission', 'Social responsive',
     'International relations', 'Women Empowerment', 'Technical Events', 'Alumni'
   ];
