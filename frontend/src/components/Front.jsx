@@ -6,6 +6,24 @@ import { useNavigate} from "react-router-dom";
 import "./style.scss";
 import sticker from "../assets/sticker.svg";
 const RegisterBlock=({currentemail})=>{
+  let history=useNavigate();
+  const Loginclick=()=>{
+      history('/signin')}
+  return(
+    <div className="RegisterBlock">
+      <div>
+        <h1>Make Headlines: Join & Write!</h1>
+        <p className='small-content'>We are always open to take you in</p>
+        <p className='quote'>Transform campus conversations. Write your truth, share widely, and lead change at your university</p>
+      </div>
+      <button onClick={Loginclick}>
+        <img src={sticker}/>
+        Register NOWWW!!
+      </button>
+    </div>
+  )
+}
+function Front({currentemail}) {
   
   let loading=false;
   const [data, setData] = useState([]);
@@ -18,7 +36,6 @@ const RegisterBlock=({currentemail})=>{
     } finally {
     }
   };
-
   useEffect(()=>{
     getData();
   },[])
@@ -27,14 +44,8 @@ const RegisterBlock=({currentemail})=>{
       console.log(data)
     }
   },[data])
-  let history=useNavigate();
-    const Loginclick=()=>{
-        history('/signin')
-    }
-  
-  return(
-    <div className="RegisterBlock">
-      <div className='flex flex-col'>
+  return (
+    <div className='Front'>
       <div className="NewsTile-container">
             {loading ? (
               Array.from({ length: 3 }).map((_, index) => (
@@ -46,34 +57,11 @@ const RegisterBlock=({currentemail})=>{
                 <Tile key={index} currentemail={currentemail} newsItem={newsItem}/>
               ))
             ) : (
-              <p className="text-center text-gray-600">No news data available.</p>
+              <p className="text-center text-gray-600">Sorry Nothing New : &#x28;</p>
             )}
-          </div> 
-      <div className='flex flex-row'>
-      <div>
-        <h1>Make Headlines: Join & Write!</h1>
-        <p className='small-content'>We are always open to take you in</p>
-        <p className='quote'>Transform campus conversations. Write your truth, share widely, and lead change at your university</p>
-      </div>
-      <button onClick={Loginclick}>
-        <img src={sticker}/>
-        Register NOWWW!!
-      </button>
-      </div>
-      
-
-      </div>
-      
-      
-
-    </div>
-  )
-}
-function Front({currentemail}) {
-
-  return (
-    <div className='Front'>
+      </div> 
       <RegisterBlock currentemail={currentemail}/>
+      
   </div>
   )
 }

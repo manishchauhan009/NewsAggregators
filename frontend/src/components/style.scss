@@ -302,6 +302,21 @@
     }
 }
 .Front{
+    .NewsTile-container{
+        margin: var(--margin3);
+        column-count: 2;
+        gap: var(--generalPadding);
+        .NewsTile{
+            margin-bottom: var(--generalPadding);
+        }
+        .img-container{
+            img{
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+        
+    }
     .RegisterBlock{
         margin: var(--margin3);
         display: flex;
@@ -570,7 +585,8 @@
     }
 }
 .NewsTile{
-    border: var(--border);
+    // border: var(--border);
+    background-color: rgba(25, 25, 25, 0.096);
     overflow: hidden;
     cursor: pointer;
     padding: 10px;
@@ -592,8 +608,8 @@
         }
     }
     h2{
-        font-size: var(--mediumfont);
-        font-weight: 500;
+        font-size: clamp(1rem,2vw,2rem);
+        font-weight: 600;
     }
     .owner, .likes, .date{
         display: flex;
@@ -605,7 +621,7 @@
         }
     }
     &:hover, &:active{
-        filter: var(--darkRed);
+        border: var(--border);
         img{
             filter: none;
         }
@@ -646,6 +662,9 @@
             font-size: var(--verysmallfont);
             img{
                 margin-left: 5px;
+                &:active,&:hover{
+                    filter: invert(19%) sepia(85%) saturate(2950%) hue-rotate(354deg) brightness(78%) contrast(99%);
+                }
             }
         }
     }
@@ -663,8 +682,32 @@
         color: var(--black);
     }
 }
-
-
+.CategoryContent{
+    margin: var(--margin3);
+    display: flex;
+    flex-direction: column;
+    gap: var(--generalPadding);
+    align-items: center;
+    .All-news-bt{
+        @include buttons(var(--black),var(--white) , );
+    }
+    @include headings();
+    .NewsTile-container{
+        margin: var(--margin3);
+        column-count: 2;
+        gap: var(--generalPadding);
+        .NewsTile{
+            margin-bottom: var(--generalPadding);
+        }
+        .img-container{
+            img{
+                width: 100% !important;
+                height: auto !important;
+            }
+        }
+        
+    }
+}
 
 
 
@@ -711,6 +754,10 @@
         }
     }
     .Front{
+        .NewsTile-container{
+            column-count: 1;
+            
+        }
         .RegisterBlock{
             flex-direction: column;
             gap: 40px;
