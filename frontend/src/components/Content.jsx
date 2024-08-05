@@ -73,7 +73,7 @@ function Content({ currentuser, currentemail, userauth }) {
               ))
             ) : data.length > 0 ? (
               data.map((newsItem, index) => (
-                <Tile key={index} newsItem={newsItem}/>
+                <Tile key={index} currentemail={currentemail} newsItem={newsItem}/>
               ))
             ) : (
               <p className="text-center text-gray-600">No news data available.</p>

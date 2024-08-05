@@ -72,7 +72,7 @@ function Header({ userauth, setUserAuth }) {
         <span>PU TIMES</span>
       </div>
       <div className="timeline">
-        <span>{`${hours}:${minutes}:${seconds}`}</span>
+        <span className="w-[90px]">{`${hours}:${minutes}:${seconds}`}</span>
         <span>{`${day}, ${date} ${month} ${year}`}</span>
         <a href='https://paruluniversity.ac.in/' target='_blank' rel="noopener noreferrer">
           <span>paruluniversity.ac.in</span>

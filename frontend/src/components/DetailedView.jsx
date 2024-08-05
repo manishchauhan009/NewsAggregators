@@ -20,7 +20,9 @@ function DetailedView() {
     
 
   }, []);
-
+  useEffect(()=>{
+    console.log(newsItem,"checkitem")
+  },[newsItem])
   if (loading) return <p>Loading...</p>;
   if (!newsItem) return <p>News item not found</p>;
 
