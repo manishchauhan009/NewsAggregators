@@ -54,7 +54,14 @@ app.use(cookieParser());
 //     allowedHeaders: ["Content-Type"], // Allow only Content-Type header
 //   })
 // );
-app.use(cors());
+app.use(
+  cors({
+    origin: 'https://news-aggregators.vercel.app', // Allow requests from this origin
+    methods: ['GET', 'POST', 'PUT', 'DELETE'], // Allow specific HTTP methods
+    allowedHeaders: ['Content-Type', 'Authorization'], // Allow specific headers
+    credentials: true, // Allow credentials (e.g., cookies)
+  })
+);
 
 // Route middleware for news-related endpoints
 app.use("/api/news", newsRoutes);

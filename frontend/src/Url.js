@@ -4,3 +4,4 @@ const newsUrl="https://newsaggregators.onrender.com/api/news";
 // const newsUrl="http://localhost:5000/api/news";
 
 export default {userUrl,newsUrl};
+
