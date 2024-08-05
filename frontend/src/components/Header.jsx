@@ -3,21 +3,18 @@ import React, { useState, useEffect } from "react";
 import pfp from "../assets/profile.svg";
 import { useNavigate } from "react-router-dom";
 
-function Header({ userauth, setUserAuth }) {
+function Header({ userauth, setUserAuth,setCurrentEmail }) {
   const [time, setTime] = useState(new Date());
   const navigate = useNavigate();
 
   function clickHandler(e) {
-    if (userauth) {
       const selectedCategory = e.target.innerText;
       if (selectedCategory === "Home") {
         navigate(`/`);
       } else {
         navigate(`/content/${selectedCategory}`);
-      }
-    } else {
-      navigate('/signin');
-    }
+      
+    } 
   }
 
   function loginHandler() {
@@ -27,6 +24,7 @@ function Header({ userauth, setUserAuth }) {
   function logoutHandler() {
     localStorage.removeItem('token');
     setUserAuth(false);
+    setCurrentEmail("");
     navigate('/signin');
   }
 

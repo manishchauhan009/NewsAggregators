@@ -3,13 +3,13 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import like from "../assets/like.svg";
 
-function Tile({ newsItem }) {
+function Tile({ newsItem,currentemail }) {
     const navigate = useNavigate();
 
   const handleClick = () => {
     const encodedobject=encodeURIComponent(JSON.stringify(newsItem))
     console.log(encodedobject,"encodedobject")
-    navigate(`/news?data=${encodedobject}`);
+    navigate(`/news?auth=${currentemail}&data=${encodedobject}`);
     window.scrollTo(0, 0);
   };
   return (
