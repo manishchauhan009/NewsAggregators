@@ -17,6 +17,11 @@ async function uploadToCloudinary(file, folder, quality) {
 }
 
 const createNews = async (req, res) => {
+  res.setHeader("Access-Control-Allow-Origin", "*")
+res.setHeader("Access-Control-Allow-Credentials", "true");
+res.setHeader("Access-Control-Max-Age", "1800");
+res.setHeader("Access-Control-Allow-Headers", "content-type");
+res.setHeader( "Access-Control-Allow-Methods", "PUT, POST, GET, DELETE, PATCH, OPTIONS" ); 
   const newsData = req.body;
   const file = req.files.imgUrl;
   const supportedType = ["jpg", "jpeg", "png"];
