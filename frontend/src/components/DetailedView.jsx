@@ -6,6 +6,7 @@ import like from "../assets/like.svg";
 import share from "../assets/share.svg";
 import feedback from "../assets/feedback.svg";
 import report from "../assets/report.svg"
+import trash from "../assets/trash.svg";
 function DetailedView() {
   const { id } = useParams();
   const [newsItem, setNewsItem] = useState(null);
@@ -108,8 +109,9 @@ function DetailedView() {
           <img onClick={()=>{
             reported();
           }} src={report} title='report article'/>
-
-          {flag&&<button className='font-semibold text-sm'>Delete</button>}
+          {flag&&<button className='delete-bt'>
+            <img src={trash} alt="Trash Can" title='delete Article'/>
+          </button>}
         </div>
         </div>
         <div className="img-container">
