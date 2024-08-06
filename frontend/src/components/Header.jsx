@@ -104,10 +104,11 @@ function Header({ userauth, setUserAuth,setCurrentEmail }) {
                 Login
               </button>
             )}
-          </div>
-          <img onClick={()=>{
+            <button onClick={()=>{
             navigate("/content")
-          }} src={pfp} alt="Profile" className="" title="go to profile"/>
+          }}>Go to Profile</button>
+          </div>
+          <img src={pfp} alt="Profile" className="" title="go to profile"/>
         </div>
         
         
