@@ -146,7 +146,7 @@ const verifylike = async (req, res) => {
   else{
     
     const news1=await user.find({ Email: newsid.currentemail })
-    console.log(news1[0].newsItems)
+    // console.log(news1[0].newsItems)
   
     if (news1[0].newsItems.includes(newsid.newsid)){
       console.log("already existss")
