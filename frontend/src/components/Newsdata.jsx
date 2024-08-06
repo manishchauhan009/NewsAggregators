@@ -19,6 +19,7 @@ function Newsdata({ currentemail }) {
   const [Content, setContent] = useState("");
   const [imgUrl, setImgUrl] = useState(null);
 
+  const navigate=useNavigate();
   const handleTitleChange = (e) => setTitle(e.target.value);
   const handleContentChange = (e) => setContent(e.target.value);
   const handleFileChange = (e) => setImgUrl(e.target.files[0]);
@@ -40,7 +41,10 @@ function Newsdata({ currentemail }) {
     formData.append('Like', Like);
     formData.append('Reported', Reported);
     formData.append('Approved', Approved);
+
+
     // formData.append('currentemail', currentemail);
+
 
     try {
       const token = localStorage.getItem('token');
@@ -48,6 +52,7 @@ function Newsdata({ currentemail }) {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       toast.success(`News Request Successfully Sent to ${Dept}`);
+      route("/content")
     } catch (error) {
       console.error(error);
       toast.error("Error submitting news request");
@@ -55,12 +60,10 @@ function Newsdata({ currentemail }) {
   };
 
   return (
+
     <div id="me" className="news-data-container">
-      <Toaster />
-      <div className="heading-container">
-        <button onClick={() => route("/content")} className="back-bt">&#129136;</button>
-        <h1>You are Writing an Article</h1>
-      </div>
+      <Toaster/>
+        <h1><button title='go back' className='back-bt' onClick={()=>{navigate(`/content`);}}>&#129128;</button>You are Writing an Article</h1>
       <form onSubmit={formSubmit} className="news-form">
         <label>
           Title
@@ -69,18 +72,18 @@ function Newsdata({ currentemail }) {
         <label>
           Category
           <select onChange={(e) => setDept(e.target.value)} className="category-select">
+          <option value="General">General</option>
+
             <option value="Training and Placement">Training and Placement Cell</option>
             <option value="Armed Forces and Motivation">Armed Forces and Motivation Cell</option>
             <option value="Career Development">Career Development Cell</option>
-            <option value="International Relation">International Relation Cell</option>
+            <option value="International Relations">International Relation Cell</option>
             <option value="Admission">Admission Cell</option>
             <option value="Alumni">Alumni Cell</option>
             <option value="Research and Development">Research and Development Cell</option>
             <option value="System Support">System Support Cell</option>
             <option value="Technical Event">Technical Event Cell</option>
             <option value="Social Responsive">Social Responsive Cell</option>
-            <option value="R and D">R and D Cell</option>
-            <option value="Internship">Internship Cell</option>
             <option value="Entrepreneurship Development">Entrepreneurship Development Cell</option>
             <option value="Women Empowerment">Women Empowerment Cell</option>
           </select>

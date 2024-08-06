@@ -15,6 +15,11 @@ const newsUserSchema = new mongoose.Schema({
         required: false // Ensure the email field is provided
       },
       newsItems: [String]
+    , currentemail1: {
+        type: String, // The email address
+        required: false // Ensure the email field is provided
+      },
+      newsItems1: [String]
 });
 
 // Export the mongoose model based on the schema

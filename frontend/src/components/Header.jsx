@@ -1,6 +1,7 @@
 // import "./style.scss";
 import React, { useState, useEffect } from "react";
 import pfp from "../assets/profile.svg";
+
 import { useNavigate } from "react-router-dom";
 
 function Header({ userauth, setUserAuth,setCurrentEmail }) {
@@ -51,8 +52,8 @@ function Header({ userauth, setUserAuth,setCurrentEmail }) {
   let minutes = time.getMinutes();
   let seconds = time.getSeconds();
   const items = [
-    'Home', 'Training and Placement', 'System Support', 'R and D', 
-    'Entrepreneurship Development', 'Career Development', 'Admission', 'Social responsive',
+    'Home','General', 'Training and Placement', 'System Support', 
+    'Entrepreneurship Development','Research and Development', 'Career Development', 'Admission', 'Social responsive',
     'International relations', 'Women Empowerment', 'Technical Events', 'Alumni'
   ];
 
@@ -73,8 +74,8 @@ function Header({ userauth, setUserAuth,setCurrentEmail }) {
         <span>PU TIMES</span>
       </div>
       <div className="timeline">
-        <span className="w-[90px]">{`${hours}:${minutes}:${seconds}`}</span>
         <span>{`${day}, ${date} ${month} ${year}`}</span>
+        <span>{`${hours}:${minutes}:${seconds}`}</span>
         <a href='https://paruluniversity.ac.in/' target='_blank' rel="noopener noreferrer">
           <span>paruluniversity.ac.in</span>
         </a>
@@ -106,7 +107,7 @@ function Header({ userauth, setUserAuth,setCurrentEmail }) {
           </div>
           <img onClick={()=>{
             navigate("/content")
-          }} src={pfp} alt="Profile" className=""/>
+          }} src={pfp} alt="Profile" className="" title="go to profile"/>
         </div>
         
         

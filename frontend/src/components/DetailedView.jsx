@@ -9,9 +9,20 @@ import report from "../assets/report.svg"
 function DetailedView() {
   const { id } = useParams();
   const [newsItem, setNewsItem] = useState(null);
+  const [flag,setflag]=useState(false);
   const [loading, setLoading] = useState(true);
   const [currentuser,setcurrentuser]=useState(null);
   const [like1,setlike1]=useState(0);
+  const [reported1,setreported1]=useState(0);
+  const query = new URLSearchParams(window.location.search);
+
+  useEffect(()=>{
+    if (query.get('auth')==="admin@gmail.com"){
+      setflag(true)
+
+    }
+
+  },[])
 
   const liked = async () => {
     const query = new URLSearchParams(window.location.search);
@@ -26,6 +37,26 @@ function DetailedView() {
       }
       else{
         setlike1(like1+1);
+      }
+      console.log(response.data)
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
+
+  const reported = async () => {
+    const query = new URLSearchParams(window.location.search);
+    const current=query.get('auth')
+    try {
+      const response = await axios.post(`${Url.newsUrl}/reported`, {
+        newsid: newsItem._id,
+        currentemail:current
+      });
+      if (response.data===0){
+
+      }
+      else{
+        setreported1(reported1+1);
       }
       console.log(response.data)
     } catch (error) {
@@ -69,7 +100,11 @@ function DetailedView() {
           </span>
           <img src={share} title='share article'/>
           <a href="mailto:support@yourwebsite.com?subject=Support Inquiry&body=Hello, I need help with..."><img src={feedback} title='share feedback'/></a>
-          <img src={report} title='report article'/>
+          <img onClick={()=>{
+            reported();
+          }} src={report} title='report article'/>
+
+          {flag&&<button className='font-semibold text-sm'>Delete</button>}
         </div>
         </div>
         <div className="img-container">

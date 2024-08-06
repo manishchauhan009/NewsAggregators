@@ -17,6 +17,9 @@ async function uploadToCloudinary(file, folder, quality) {
 }
 
 const createNews = async (req, res) => {
+  res.set('Access-Control-Allow-Origin', '*');
+
+
   const newsData = req.body;
   const file = req.files.imgUrl;
   const supportedType = ["jpg", "jpeg", "png"];
@@ -166,4 +169,49 @@ const verifylike = async (req, res) => {
  
 };
 
-module.exports = { createNews, adminNews, adminApprove, adminDeny, newsData, categoryData,newsdataall,verifylike };
+
+
+const reported = async (req, res) => {
+  const newsid=req.body
+  if (newsid.currentemail===""){
+    console.log("Not signed in")
+    res.send("0")
+
+  }
+  else{
+    
+    const news2=await user.find({ Email: newsid.currentemail })
+  
+    if (news2[0].newsItems1.includes(newsid.newsid)){
+      console.log("already existss")
+      res.send("0")
+      return
+
+    }
+  
+    // if (!news1[currentemail].includes(newsid.newsid)){
+  
+    // }
+    const news=await user.updateOne({Email:newsid.currentemail},{ $push: { newsItems1: newsid.newsid } })
+
+    let defaulter = await News.findOne({ _id: Object(newsid.newsid) });
+    if (defaulter.Reported>=10){
+      await News.findByIdAndDelete(newsid.newsid)
+      console.log("deleted",defaulter.Reported)
+    }
+    else{
+      const result = await News.updateOne(
+        { _id: newsid.newsid }, // Filter by document ID
+        { $inc: { Reported: 1 } } // Set the `Like` field to 1
+      );
+      res.send("1")
+
+    }
+  
+    
+
+  }
+ 
+};
+
+module.exports = { createNews, adminNews, adminApprove, adminDeny, newsData, categoryData,newsdataall,verifylike,reported };

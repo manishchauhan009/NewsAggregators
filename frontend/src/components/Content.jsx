@@ -8,6 +8,7 @@ import Tile from "./Tile";
 import DetailedView from "./DetailedView";
 import write from '../assets/write.svg';
 function Content({ currentuser, currentemail, userauth }) {
+  const [flag,setflag]=useState(false);
   
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -48,12 +49,29 @@ function Content({ currentuser, currentemail, userauth }) {
     },[2000])
   },[data])
 
+  useEffect(()=>{
+    if (currentemail==="admin@gmail.com"){
+      setflag(true)
+
+    }
+
+  },[])
+
 
   return (
     <div className="Content">
       <div className="Userdetails">
         {/* <img src="" className="profile-img"/> */}
         <h1 className="">Welcome {currentemail}</h1>
+        {flag&&<button className="approval-bt" onClick={()=>{
+          if (currentemail==="admin@gmail.com"){
+            navigate("/admin")
+
+          }
+        }}>
+          <span>&#x2611;</span>
+          <p>Approvals</p>
+          </button>}
         <button
           onClick={() => {
             navigate("/newsdata");
@@ -65,6 +83,7 @@ function Content({ currentuser, currentemail, userauth }) {
             <p>Write an Article</p>
           </button>
       </div>
+      {/* <h2>Your Publishes</h2> */}
       <div className="NewsTile-container">
             {loading ? (
               Array.from({ length: 3 }).map((_, index) => (
