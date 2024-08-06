@@ -12,7 +12,10 @@ function DetailedView() {
   const [flag,setflag]=useState(false);
   const [loading, setLoading] = useState(true);
   const [currentuser,setcurrentuser]=useState(null);
-  const [like1,setlike1]=useState(0);
+  const [initialrender,setinitialrender]=useState(true)
+  const [like1,setlike1]=useState(0)
+  console.log("renrendered")
+
   const [reported1,setreported1]=useState(0);
   const query = new URLSearchParams(window.location.search);
 
@@ -33,6 +36,7 @@ function DetailedView() {
         currentemail:current
       });
       if (response.data===0){
+        console.log("check1")
 
       }
       else{
@@ -53,6 +57,7 @@ function DetailedView() {
         currentemail:current
       });
       if (response.data===0){
+        console.log("stayed");
 
       }
       else{
