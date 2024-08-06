@@ -27,18 +27,12 @@ const fileupload = require("express-fileupload");
 //   }
 // });
 
-
-
-
-
-
-
 const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(
   fileupload({
     useTempFiles: true, // Enabling the use of temporary files for file uploads
-    tempFileDir: "/temp/", // Setting the directory for temporary files
+    tempFileDir: "/tmp/", // Setting the directory for temporary files
   })
 );
 
@@ -47,20 +41,32 @@ app.use(express.json());
 app.use(cookieParser());
 
 // CORS middleware configuration
-// app.use(
-//   cors({
-//     origin: "https://localhost:3000", // Allow requests from localhost:3000
-//     methods: ["GET", "POST"], // Allow only GET and POST methods
-//     allowedHeaders: ["Content-Type"], // Allow only Content-Type header
-//   })
-// );
-app.use(cors());
+const allowedOrigins = [
+  'https://news-aggregators.vercel.app',
+  'http://localhost:3000'
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true,
+  })
+);
+
+app.options('*', cors());
 
 // Route middleware for news-related endpoints
 app.use("/api/news", newsRoutes);
 // Route middleware for user-related endpoints
 app.use("/api/user", userRoutes);
-
 
 app.use(notFound);
 app.use(errorHandler);
