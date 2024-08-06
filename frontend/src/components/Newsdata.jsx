@@ -4,12 +4,15 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import './style.scss';
 import Url from "../Url";
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 function Newsdata({ currentemail }) {
   const [Dept, setDept] = useState("Not Selected");
   const [Owner,setOwner]=useState(currentemail);
   const route = useNavigate();
   const group = Dept;
+  const [value, setValue] = useState('');
   // const date = new Date().toLocaleString();
 
   const Approved = false;
@@ -91,7 +94,12 @@ function Newsdata({ currentemail }) {
         </label>
         <label>
           Content
-          <textarea required onChange={handleContentChange} className="content-textarea" placeholder="Write Your news here!"></textarea>
+          {/* <textarea required onChange={handleContentChange} className="content-textarea" placeholder="Write Your news here!"></textarea> */}
+          <div className="">
+          <ReactQuill theme="snow" value={Content} className="h-[30vh] mb-10"  onChange={setContent} />
+
+          </div>
+          
         </label>
         <label>
           Media

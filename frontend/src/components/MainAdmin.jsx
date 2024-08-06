@@ -115,7 +115,9 @@ function MainAdmin() {
         <h2>{element.Title}</h2>
         <p>{element.Date}</p>
         <img src={element.imgUrl} alt={element.Title} />
-        <p className='content'>{element.Content}</p>
+        {/* <p className='content'>{element.Content}</p> */}
+        <div class='content' className='flex flex-col' dangerouslySetInnerHTML={{ __html: element.Content }} />
+
         <div>
           <button className='approve' onClick={handleApprove}>Approve</button>
           <button className='deny' onClick={() => handleDeny(element)}>Deny</button>

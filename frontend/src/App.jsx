@@ -12,6 +12,7 @@ import CategoryContent from "./components/CategoryContent";
 import paper from "./assets/paper1.png";
 import DetailedView from "./components/DetailedView";
 import axios from 'axios';
+import Test from "./components/Test";
 import Url from './Url'; // Adjust the path to where your Url.js is located
 function App() {
   const [userauth, setUserAuth] = useState(false);
@@ -29,6 +30,7 @@ function App() {
 
   return (
     <div className="App">
+      {/* <Test/> */}
       <BrowserRouter>
         <Header userauth={userauth} setCurrentEmail={setCurrentEmail} setUserAuth={setUserAuth}/>
         <Routes>
