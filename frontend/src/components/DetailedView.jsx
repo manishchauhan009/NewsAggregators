@@ -145,7 +145,8 @@ function DetailedView() {
             className=""
           />
         </div>
-        <p className="content">{newsItem.Content}</p>
+        {/* <p className="content">{newsItem.Content}</p> */}
+        <div className='content' dangerouslySetInnerHTML={{ __html: newsItem.Content }} />
     </div>
   );
 }
