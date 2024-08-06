@@ -6,13 +6,17 @@ import like from "../assets/like.svg";
 import share from "../assets/share.svg";
 import feedback from "../assets/feedback.svg";
 import report from "../assets/report.svg"
+import trash from "../assets/trash.svg";
 function DetailedView() {
   const { id } = useParams();
   const [newsItem, setNewsItem] = useState(null);
   const [flag,setflag]=useState(false);
   const [loading, setLoading] = useState(true);
   const [currentuser,setcurrentuser]=useState(null);
-  const [like1,setlike1]=useState(0);
+  const [initialrender,setinitialrender]=useState(true)
+  const [like1,setlike1]=useState(0)
+  console.log("renrendered")
+
   const [reported1,setreported1]=useState(0);
   const query = new URLSearchParams(window.location.search);
 
@@ -33,6 +37,7 @@ function DetailedView() {
         currentemail:current
       });
       if (response.data===0){
+        console.log("check1")
 
       }
       else{
@@ -53,6 +58,7 @@ function DetailedView() {
         currentemail:current
       });
       if (response.data===0){
+        console.log("stayed");
 
       }
       else{
@@ -103,8 +109,9 @@ function DetailedView() {
           <img onClick={()=>{
             reported();
           }} src={report} title='report article'/>
-
-          {flag&&<button className='font-semibold text-sm'>Delete</button>}
+          {flag&&<button className='delete-bt'>
+            <img src={trash} alt="Trash Can" title='delete Article'/>
+          </button>}
         </div>
         </div>
         <div className="img-container">
