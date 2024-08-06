@@ -214,4 +214,10 @@ const reported = async (req, res) => {
  
 };
 
-module.exports = { createNews, adminNews, adminApprove, adminDeny, newsData, categoryData,newsdataall,verifylike,reported };
+const deletepost=async(req,res)=>{
+  const newsid=req.body
+  const news3=await News.findByIdAndDelete(newsid.newsid);
+  console.log("deleted")
+}
+
+module.exports = { createNews, adminNews, adminApprove, adminDeny, newsData, categoryData,newsdataall,verifylike,reported,deletepost };

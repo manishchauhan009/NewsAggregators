@@ -2,13 +2,16 @@ import React, { useEffect,useState } from 'react'
 import axios from "axios";
 import Tile from "./Tile";
 import Url from "../Url";
+import { jwtDecode } from "jwt-decode";
 import { useNavigate} from "react-router-dom";
 import "./style.scss";
 import sticker from "../assets/sticker.svg";
-const RegisterBlock=({currentemail})=>{
+const RegisterBlock=()=>{
+
   let history=useNavigate();
   const Loginclick=()=>{
       history('/signin')}
+  
   return(
     <div className="RegisterBlock">
       <div>
@@ -23,7 +26,17 @@ const RegisterBlock=({currentemail})=>{
     </div>
   )
 }
-function Front({currentemail}) {
+function Front({setUserAuth ,setCurrentEmail,currentemail}) {
+  useEffect(()=>{
+    const token=localStorage.getItem("token");
+    if (token!==null){
+      const decoded=jwtDecode(token)
+      setCurrentEmail(decoded.Email)
+      setUserAuth(true)
+
+    }
+
+  })
   
   let loading=false;
   const [data, setData] = useState([]);
@@ -60,7 +73,7 @@ function Front({currentemail}) {
               <p className="text-center text-gray-600">Sorry Nothing New : &#x28;</p>
             )}
       </div> 
-      <RegisterBlock currentemail={currentemail}/>
+      <RegisterBlock />
       
   </div>
   )

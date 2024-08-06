@@ -1,5 +1,5 @@
 const express = require("express");
-const { createNews, adminNews, newsData, adminApprove, adminDeny, categoryData,newsdataall,verifylike,reported } = require("../controllers/newsHandler");
+const { createNews, adminNews, newsData, adminApprove, adminDeny, categoryData,newsdataall,verifylike,reported,deletepost } = require("../controllers/newsHandler");
 const { authMiddleware} = require("../middleware/authMiddleware");
 const router = express.Router();
 router.post("/createNews", authMiddleware,createNews);
@@ -11,6 +11,7 @@ router.post('/admin/approve', adminApprove);
 router.post('/admin/deny', adminDeny);
 router.post('/verifylike',verifylike);
 router.post('/reported',reported);
+router.post('/deletepost',deletepost);
 router.post('/categoryData',authMiddleware, categoryData);
 
 module.exports = router;

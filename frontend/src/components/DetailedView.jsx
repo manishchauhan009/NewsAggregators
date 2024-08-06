@@ -7,7 +7,10 @@ import share from "../assets/share.svg";
 import feedback from "../assets/feedback.svg";
 import report from "../assets/report.svg"
 import trash from "../assets/trash.svg";
+import { useNavigate} from "react-router-dom";
+import "./style.scss";
 function DetailedView() {
+  let history = useNavigate();
   const { id } = useParams();
   const [newsItem, setNewsItem] = useState(null);
   const [flag,setflag]=useState(false);
@@ -69,6 +72,19 @@ function DetailedView() {
       console.error("Error fetching data:", error);
     }
   };
+
+
+  const deletepost = async () => {
+    const query = new URLSearchParams(window.location.search);
+    try {
+      const response = await axios.post(`${Url.newsUrl}/deletepost`, {
+        newsid: newsItem._id,
+      });
+      
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
+  };
   
 
   useEffect(() => {
@@ -109,7 +125,15 @@ function DetailedView() {
           <img onClick={()=>{
             reported();
           }} src={report} title='report article'/>
-          {flag&&<button className='delete-bt'>
+          {flag&&<button onClick={()=>{
+            deletepost()
+            
+            setTimeout(() => {
+              history("/")
+              
+              
+            }, 1000);
+          }} className='delete-bt'>
             <img src={trash} alt="Trash Can" title='delete Article'/>
           </button>}
         </div>
