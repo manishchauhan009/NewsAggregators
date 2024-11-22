@@ -4,7 +4,7 @@ function Footer(){
     return(
         <div id='Footer'>
             <img src={stars}/>
-            <span>© Copyright 2024 News Aggregators</span>
+            <span>© Copyright 2024 News Aggregators!</span>
         </div>
     )
 }
