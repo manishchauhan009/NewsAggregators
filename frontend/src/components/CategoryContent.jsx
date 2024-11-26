@@ -1,10 +1,9 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import Url from "../Url";
 import axios from "axios";
-import Skeleton from 'react-loading-skeleton';
-import 'react-loading-skeleton/dist/skeleton.css';
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import Tile from "./Tile";
 
 function CategoryContent({ userauth }) {
@@ -14,13 +13,17 @@ function CategoryContent({ userauth }) {
   const navigate = useNavigate();
 
   const fetchCategoryData = async () => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     try {
-      const response = await axios.post(`${Url.newsUrl}/categoryData`, {
-        category: category,
-      }, {
-        headers: { 'Authorization': `Bearer ${token}` }
-      });
+      const response = await axios.post(
+        `${Url.newsUrl}/categoryData`,
+        {
+          category: category,
+        },
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setData(response.data);
     } catch (error) {
       console.error(error);
@@ -44,22 +47,22 @@ function CategoryContent({ userauth }) {
 
   return (
     <div className="CategoryContent">
-        <h1>{category}</h1>
-        <button
-            onClick={handleOnClick}
-            className="All-news-bt"
-          >View All News</button>
-        
-          {loading ? <p>Loading...</p> : data.length > 0 ? 
-          <div className="NewsTile-container">
-          {
-            data.map((newsItem, index) => (
-              <Tile key={index} newsItem={newsItem}/>
-            ))
-          }
-          </div> : (
-            <p className="text-center text-gray-600">No news data available.</p>
-          )}
+      <h1>{category}</h1>
+      <button onClick={handleOnClick} className="All-news-bt">
+        View All News
+      </button>
+
+      {loading ? (
+        <p>Loading...</p>
+      ) : data.length > 0 ? (
+        <div className="NewsTile-container">
+          {data.map((newsItem, index) => (
+            <Tile key={index} newsItem={newsItem} />
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-gray-600">No news data available.</p>
+      )}
     </div>
   );
 }
