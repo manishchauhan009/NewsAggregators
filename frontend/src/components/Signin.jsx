@@ -4,9 +4,8 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
-import './style.scss';
+import "./style.scss";
 import urls from "../Url";
-
 
 function Signin({ setUserAuth, currentuser, setCurrentEmail, setCurrentUser }) {
   // const [typeuser, settypeuser] = useState("");
@@ -19,24 +18,22 @@ function Signin({ setUserAuth, currentuser, setCurrentEmail, setCurrentUser }) {
   const Signup = () => {
     Navigate("/signup");
   };
-  useEffect(()=>{
-    console.log("working")
-    const token = localStorage.getItem('token');
-    console.log(token)
-    if (token===null){
-      history("/signin")
-      return
+  useEffect(() => {
+    console.log("working");
+    const token = localStorage.getItem("token");
+    console.log(token);
+    if (token === null) {
+      history("/signin");
+      return;
     }
 
-      const decoded=jwtDecode(token)
-      console.log(decoded)
-      setCurrentEmail(decoded.Email)
-      setCurrentUser(null)
-      setUserAuth(true)
-      history("/content")
-
-
-  },[])
+    const decoded = jwtDecode(token);
+    console.log(decoded);
+    setCurrentEmail(decoded.Email);
+    setCurrentUser(null);
+    setUserAuth(true);
+    history("/content");
+  }, []);
   const submitHandler = async (e) => {
     e.preventDefault();
     try {
@@ -51,14 +48,14 @@ function Signin({ setUserAuth, currentuser, setCurrentEmail, setCurrentUser }) {
 
       if (response.status === 200) {
         toast.success("Found You!!");
-        localStorage.setItem('token',response.data.token);
-        console.log(response.data.token)
-        setUserAuth(true)
+        localStorage.setItem("token", response.data.token);
+        console.log(response.data.token);
+        setUserAuth(true);
         setTimeout(() => {
           toast.dismiss();
-          if (Email==="admin@gmail.com"){
-            history("/Admin")
-            return
+          if (Email === "admin@gmail.com") {
+            history("/Admin");
+            return;
           }
           history("/content");
         }, 2000);
@@ -66,14 +63,12 @@ function Signin({ setUserAuth, currentuser, setCurrentEmail, setCurrentUser }) {
       } else if (response.status === 404) {
         toast.error("Account Doesn't Exists With Us..!!");
         setTimeout(() => {
-          history('/signup')
+          history("/signup");
         }, 2000);
         toast.loading("Will Redirect..");
-      }
-      else if (response.status===800){
+      } else if (response.status === 800) {
         toast.error("Email Regex Aroused!");
-      }
-      else {
+      } else {
         toast.error("Credentials are Not Matching!");
         setTimeout(() => {
           window.location.reload();
@@ -92,47 +87,56 @@ function Signin({ setUserAuth, currentuser, setCurrentEmail, setCurrentUser }) {
       <div className="content">
         <h1 className="">Sign in</h1>
         <form onSubmit={submitHandler} action="">
-          {<label>Email
-            <input
-              onChange={(e) => {
-                setEmail(e.target.value);
-              }}
-              placeholder="Enter Your Email"
-              className=""
-              type="text"
-            />
-          </label>}
-          {<label>Username
-            <input
-              onChange={(e) => {
-                setUsername(e.target.value);
-              }}
-              placeholder="Enter Your Username"
-              className=""
-              type="text"
-            />
-          </label>}
-          {<label>Password
-            <input
-              onChange={(e) => {
-                setPassword(e.target.value);
-              }}
-              placeholder="Enter Your Password"
-              className=""
-              type="password"
-            />
-          </label>}
-          <button className="">
-            Sign in
-          </button>
+          {
+            <label>
+              Email
+              <input
+                onChange={(e) => {
+                  setEmail(e.target.value);
+                }}
+                placeholder="Enter Your Email"
+                className=""
+                type="text"
+              />
+            </label>
+          }
+          {
+            <label>
+              Username
+              <input
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                }}
+                placeholder="Enter Your Username"
+                className=""
+                type="text"
+              />
+            </label>
+          }
+          {
+            <label>
+              Password
+              <input
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                }}
+                placeholder="Enter Your Password"
+                className=""
+                type="password"
+              />
+            </label>
+          }
+          <button className="">Sign in</button>
         </form>
         <div className="line"></div>
         <div className="registration">
-          <button onClick={Signup} className="">Register</button>
+          <button onClick={Signup} className="">
+            Register
+          </button>
         </div>
       </div>
       <div className="img-container">
-        <img src='https://i.pinimg.com/originals/48/5d/2f/485d2f9046e9042762da35b2e8f22b87.gif' />
+        <img src="https://i.pinimg.com/originals/48/5d/2f/485d2f9046e9042762da35b2e8f22b87.gif" />
       </div>
     </div>
   );
