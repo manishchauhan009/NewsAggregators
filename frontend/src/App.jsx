@@ -13,7 +13,7 @@ import paper from "./assets/paper1.png";
 import DetailedView from "./components/DetailedView";
 import axios from 'axios';
 import Test from "./components/Test";
-import Url from './Url'; // Adjust the path to where your Url.js is located
+import Url from './Url'; 
 function App() {
   const [userauth, setUserAuth] = useState(false);
   const [currentuser, setCurrentUser] = useState("");
