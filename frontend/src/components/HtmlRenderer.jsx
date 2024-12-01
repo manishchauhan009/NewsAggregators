@@ -1,9 +1,7 @@
-import React from 'react';
+import React from "react";
 
 const HtmlRenderer = ({ htmlContent }) => {
-  return (
-    <div dangerouslySetInnerHTML={{ __html: htmlContent }} />
-  );
+  return <div dangerouslySetInnerHTML={{ __html: htmlContent }} />;
 };
 
 export default HtmlRenderer;
