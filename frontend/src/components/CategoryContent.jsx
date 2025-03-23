@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
@@ -43,22 +42,22 @@ function CategoryContent({ userauth }) {
 
   return (
     <div className="CategoryContent">
-        <h1>{category}</h1>
-        <button
-            onClick={handleOnClick}
-            className="All-news-bt"
-          >View All News</button>
-        
-          {loading ? <p>Loading...</p> : data.length > 0 ? 
-          <div className="NewsTile-container">
-          {
-            data.map((newsItem, index) => (
-              <Tile key={index} newsItem={newsItem}/>
-            ))
-          }
-          </div> : (
-            <p className="text-center text-gray-600">No news data available.</p>
-          )}
+      <h1>{category}</h1>
+      <button onClick={handleOnClick} className="All-news-bt">
+        View All News
+      </button>
+
+      {loading ? (
+        <p>Loading...</p>
+      ) : data.length > 0 ? (
+        <div className="NewsTile-container">
+          {data.map((newsItem, index) => (
+            <Tile key={index} newsItem={newsItem} />
+          ))}
+        </div>
+      ) : (
+        <p className="text-center text-gray-600">No news data available.</p>
+      )}
     </div>
   );
 }

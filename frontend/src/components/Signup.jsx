@@ -6,7 +6,7 @@ import './style.scss';
 
 function Signup() {
   let navigate = useNavigate();
-  
+
   const [Email, setEmail] = useState("");
   const [Username, setUsername] = useState("");
   const [Password, setPassword] = useState("");
@@ -29,13 +29,13 @@ function Signup() {
         Email,
         Username,
         Password,
-        ConfirmPassword
+        ConfirmPassword,
       });
 
       if (response.status === 200) {
         toast.success("Success! Redirecting...");
         setTimeout(() => {
-          navigate('/Signin');
+          navigate("/Signin");
         }, 2000);
       } else if (response.status === 400) {
         toast.error("User already exists. Please login!");
@@ -59,7 +59,8 @@ function Signup() {
       <div className="content">
         <h1>Register</h1>
         <form onSubmit={formSubmit} action="">
-          <label>Email
+          <label>
+            Email
             <input
               onChange={(e) => setEmail(e.target.value)}
               required
@@ -67,7 +68,8 @@ function Signup() {
               type="email"
             />
           </label>
-          <label>Username
+          <label>
+            Username
             <input
               onChange={(e) => setUsername(e.target.value)}
               required
@@ -75,7 +77,8 @@ function Signup() {
               type="text"
             />
           </label>
-          <label>Password
+          <label>
+            Password
             <input
               onChange={(e) => setPassword(e.target.value)}
               required
@@ -83,7 +86,8 @@ function Signup() {
               type="password"
             />
           </label>
-          <label>Confirm Password
+          <label>
+            Confirm Password
             <input
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
@@ -95,12 +99,15 @@ function Signup() {
         </form>
         <div className="line"></div>
         <div className="registration">
-          <button onClick={() => navigate('/Signin')}>Sign in</button>
+          <button onClick={() => navigate("/Signin")}>Sign in</button>
         </div>
       </div>
       <div className="img-container">
         <div className="overlay"></div>
-        <img src='https://cdn.dribbble.com/users/136988/screenshots/1921959/door_smal.gif' alt="Signup Illustration" />
+        <img
+          src="https://cdn.dribbble.com/users/136988/screenshots/1921959/door_smal.gif"
+          alt="Signup Illustration"
+        />
       </div>
     </div>
   );

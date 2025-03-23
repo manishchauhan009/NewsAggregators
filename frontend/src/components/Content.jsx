@@ -95,7 +95,7 @@ function Content({ currentuser, currentemail, userauth }) {
             ) : (
               <p className="text-center text-gray-600">No news data available.</p>
             )}
-          </div>      
+      </div>      
     </div>
   );
 }

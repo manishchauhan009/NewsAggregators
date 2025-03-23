@@ -1,43 +1,44 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Tile from "./Tile";
 import { jwtDecode } from "jwt-decode";
-import { useNavigate} from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import "./style.scss";
 import sticker from "../assets/sticker.svg";
-const RegisterBlock=()=>{
+const RegisterBlock = () => {
+  let history = useNavigate();
+  const Loginclick = () => {
+    history("/signin");
+  };
 
-  let history=useNavigate();
-  const Loginclick=()=>{
-      history('/signin')}
-  
-  return(
+  return (
     <div className="RegisterBlock">
       <div>
         <h1>Make Headlines: Join & Write!</h1>
-        <p className='small-content'>We are always open to take you in</p>
-        <p className='quote'>Transform campus conversations. Write your truth, share widely, and lead change at your university</p>
+        <p className="small-content">We are always open to take you in</p>
+        <p className="quote">
+          Transform campus conversations. Write your truth, share widely, and
+          lead change at your university
+        </p>
       </div>
       <button onClick={Loginclick}>
         <img src={sticker} alt='Register'/>
         Register NOWWW!!
       </button>
     </div>
-  )
-}
-function Front({setUserAuth ,setCurrentEmail,currentemail}) {
-  useEffect(()=>{
-    const token=localStorage.getItem("token");
-    if (token!==null){
-      const decoded=jwtDecode(token)
-      setCurrentEmail(decoded.Email)
-      setUserAuth(true)
-
+  );
+};
+function Front({ setUserAuth, setCurrentEmail, currentemail }) {
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      const decoded = jwtDecode(token);
+      setCurrentEmail(decoded.Email);
+      setUserAuth(true);
     }
+  });
 
-  })
-  
-  let loading=false;
+  let loading = false;
   const [data, setData] = useState([]);
   const getData = async () => {
     const NEWS_URL=process.env.NEWS_URL;
@@ -49,34 +50,37 @@ function Front({setUserAuth ,setCurrentEmail,currentemail}) {
     } finally {
     }
   };
-  useEffect(()=>{
+  useEffect(() => {
     getData();
-  },[])
-  useEffect(()=>{
-    if (data.length>0){
-      console.log(data)
+  }, []);
+  useEffect(() => {
+    if (data.length > 0) {
+      console.log(data);
     }
-  },[data])
+  }, [data]);
   return (
-    <div className='Front'>
+    <div className="Front">
       <div className="NewsTile-container">
-            {loading ? (
-              Array.from({ length: 3 }).map((_, index) => (
-                <div key={index} className="mb-6 p-4 rounded-lg bg-white shadow-md">
-                </div>
-              ))
-            ) : data.length > 0 ? (
-              data.map((newsItem, index) => (
-                <Tile key={index} currentemail={currentemail} newsItem={newsItem}/>
-              ))
-            ) : (
-              <p className="text-center text-gray-600">Sorry Nothing New : &#x28;</p>
-            )}
-      </div> 
+        {loading ? (
+          Array.from({ length: 3 }).map((_, index) => (
+            <div
+              key={index}
+              className="mb-6 p-4 rounded-lg bg-white shadow-md"
+            ></div>
+          ))
+        ) : data.length > 0 ? (
+          data.map((newsItem, index) => (
+            <Tile key={index} currentemail={currentemail} newsItem={newsItem} />
+          ))
+        ) : (
+          <p className="text-center text-gray-600">
+            Sorry Nothing New : &#x28;
+          </p>
+        )}
+      </div>
       <RegisterBlock />
-      
-  </div>
-  )
+    </div>
+  );
 }
 
-export default Front
+export default Front;
