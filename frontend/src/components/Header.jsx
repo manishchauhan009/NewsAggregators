@@ -1,21 +1,19 @@
-// import "./style.scss";
 import React, { useState, useEffect } from "react";
 import pfp from "../assets/profile.svg";
-
 import { useNavigate } from "react-router-dom";
 
-function Header({ userauth, setUserAuth,setCurrentEmail }) {
+function Header({ userauth, setUserAuth, setCurrentEmail }) {
   const [time, setTime] = useState(new Date());
   const navigate = useNavigate();
 
   function clickHandler(e) {
-      const selectedCategory = e.target.innerText;
-      if (selectedCategory === "Home") {
-        navigate(`/`);
-      } else {
-        navigate(`/content/${selectedCategory}`);
-      
-    } 
+    const selectedCategory = e.target.innerText;
+    if (selectedCategory === "Home") {
+      navigate(`/`);
+    } else {
+      navigate(`/content/${selectedCategory}`);
+
+    }
   }
 
   function loginHandler() {
@@ -52,14 +50,14 @@ function Header({ userauth, setUserAuth,setCurrentEmail }) {
   let minutes = time.getMinutes();
   let seconds = time.getSeconds();
   const items = [
-    'Home','General', 'Training and Placement', 'System Support', 
-    'Entrepreneurship Development','Research and Development', 'Career Development', 'Admission', 'Social responsive',
+    'Home', 'General', 'Training and Placement', 'System Support',
+    'Entrepreneurship Development', 'Research and Development', 'Career Development', 'Admission', 'Social responsive',
     'International relations', 'Women Empowerment', 'Technical Events', 'Alumni'
   ];
 
   const [first5Items] = useState(items.slice(0, 5));
   const [remainingItems] = useState(items.slice(5));
-  
+
   minutes = checkTime(minutes);
   seconds = checkTime(seconds);
 
@@ -86,13 +84,16 @@ function Header({ userauth, setUserAuth,setCurrentEmail }) {
             {item}
           </p>
         ))}
-        <p className="more">More
+        <div className="more">More
           <div className="dropdown">
-          {remainingItems.map((item, index) => (
-                <p key={index} className="dropdown-item" onClick={clickHandler}>{item}</p>
-              ))}
+            {remainingItems.map((item, index) => (
+              <p key={index} className="dropdown-item" onClick={clickHandler}>
+                {item}
+              </p>  // ✅ This is now correctly nested inside <div> instead of <p>
+            ))}
           </div>
-        </p>
+        </div>
+
         <div className="profile-container">
           <div className="login-controls">
             {userauth ? (
@@ -105,12 +106,12 @@ function Header({ userauth, setUserAuth,setCurrentEmail }) {
               </button>
             )}
           </div>
-          <img onClick={()=>{
+          <img onClick={() => {
             navigate("/content")
-          }} src={pfp} alt="Profile" className="" title="go to profile"/>
+          }} src={pfp} alt="Profile" className="" title="go to profile" />
         </div>
-        
-        
+
+
       </nav>
     </div>
   );

@@ -3,7 +3,6 @@ import axios from "axios";
 import toast, { Toaster } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import './style.scss';
-import Url from "../Url";
 
 function Signup() {
   let navigate = useNavigate();
@@ -18,6 +17,7 @@ function Signup() {
   }, []);
 
   const formSubmit = async (e) => {
+    const USER_URL=process.env.USER_URL;
     e.preventDefault();
     if (Password !== ConfirmPassword) {
       toast.error("Passwords do not match!");
@@ -25,7 +25,7 @@ function Signup() {
     }
 
     try {
-      const response = await axios.post(`${Url.userUrl}/register`, {
+      const response = await axios.post(`${USER_URL}/register`, {
         Email,
         Username,
         Password,

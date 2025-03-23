@@ -5,7 +5,6 @@ import toast, { Toaster } from "react-hot-toast";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import './style.scss';
-import urls from "../Url";
 
 
 function Signin({ setUserAuth, currentuser, setCurrentEmail, setCurrentUser }) {
@@ -38,9 +37,10 @@ function Signin({ setUserAuth, currentuser, setCurrentEmail, setCurrentUser }) {
 
   },[])
   const submitHandler = async (e) => {
+    const USER_URL=process.env.USER_URL;
     e.preventDefault();
     try {
-      const response = await axios.post(`${urls.userUrl}/login`, {
+      const response = await axios.post(`${USER_URL}/login`, {
         Email,
         Username,
         Password,

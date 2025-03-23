@@ -1,9 +1,7 @@
 
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import Url from "../Url";
 import axios from "axios";
-import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tile from "./Tile";
 
@@ -14,9 +12,10 @@ function CategoryContent({ userauth }) {
   const navigate = useNavigate();
 
   const fetchCategoryData = async () => {
+    const NEWS_URL=process.env.NEWS_URL;
     const token = localStorage.getItem('token');
     try {
-      const response = await axios.post(`${Url.newsUrl}/categoryData`, {
+      const response = await axios.post(`${NEWS_URL}/categoryData`, {
         category: category,
       }, {
         headers: { 'Authorization': `Bearer ${token}` }

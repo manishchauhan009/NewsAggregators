@@ -27,9 +27,7 @@ const register = async (req, res) => {
         userData.Password = hashedPassword;
         const newUser = new User(userData);
         await newUser.save();
-        return res
-          .status(200)
-          .json({ success: true, message: "User Registered Successfully" });
+        return res.status(200).json({ success: true, message: "User Registered Successfully" });
       }
     } else {
       console.log("Invalid email")

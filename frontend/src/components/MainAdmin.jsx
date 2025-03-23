@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './style.scss';
-import Url from '../Url';
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,10 +12,10 @@ function MainAdmin() {
   const navigate = useNavigate();
 
   const isAdminFunc = async () => {
+    const USER_URL=process.env.USER_URL
     const token = localStorage.getItem('token');
-    console.log(token);
     try {
-      const response = await axios.post(`${Url.userUrl}/login/admin`, {}, {
+      const response = await axios.post(`${USER_URL}/login/admin`, {}, {
         headers: { 'Authorization': `Bearer ${token}` }
       });
       console.log(response);
@@ -34,8 +33,9 @@ function MainAdmin() {
   };
 
   const getData = async () => {
+    const NEWS_URL=process.env.NEWS_URL;
     try {
-      const response = await axios.get(`${Url.newsUrl}/admin/news`);
+      const response = await axios.get(`${NEWS_URL}/admin/news`);
       setData(response.data); // Set data received from API response
       console.log(data);
     } catch (error) {
@@ -44,8 +44,9 @@ function MainAdmin() {
   };
 
   const handleApprove = async () => {
+    const NEWS_URL=process.env.NEWS_URL;
     try {
-      await axios.post(`${Url.newsUrl}/admin/approve`, { id: selectedElement._id });
+      await axios.post(`${NEWS_URL}/admin/approve`, { id: selectedElement._id });
       toast.success("Article Approved");
       setSelectedElement(null);
       getData(); // Refresh the data after approval
@@ -56,13 +57,14 @@ function MainAdmin() {
   };
 
   const handleDeny = async (element) => {
+    const NEWS_URL=process.env.NEWS_URL;
     if (!element) {
       console.error('No selected element to deny');
       return;
     }
 
     try {
-      await axios.post(`${Url.newsUrl}/admin/deny`, { id: element._id });
+      await axios.post(`${NEWS_URL}/admin/deny`, { id: element._id });
       toast.success("Article Denied");
       if (selectedElement && selectedElement._id === element._id) {
         setSelectedElement(null);

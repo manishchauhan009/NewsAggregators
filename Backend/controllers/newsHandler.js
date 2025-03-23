@@ -195,7 +195,7 @@ const reported = async (req, res) => {
     const news=await user.updateOne({Email:newsid.currentemail},{ $push: { newsItems1: newsid.newsid } })
 
     let defaulter = await News.findOne({ _id: Object(newsid.newsid) });
-    if (defaulter.Reported>=10){
+    if (defaulter.Reported>=1){
       await News.findByIdAndDelete(newsid.newsid)
       console.log("deleted",defaulter.Reported)
     }
