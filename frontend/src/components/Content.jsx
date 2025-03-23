@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
 import axios from "axios";
-import Url from "../Url";
-import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 import Tile from "./Tile";
-import DetailedView from "./DetailedView";
 import write from '../assets/write.svg';
 function Content({ currentuser, currentemail, userauth }) {
   const [flag,setflag]=useState(false);
@@ -15,9 +12,10 @@ function Content({ currentuser, currentemail, userauth }) {
   const navigate = useNavigate();
 
   const getData = async () => {
+    const NEWS_URL=process.env.NEWS_URL;
     const token = localStorage.getItem("token");
     try {
-      const response = await axios.get(`${Url.newsUrl}/ownernewsData`, {
+      const response = await axios.get(`${NEWS_URL}/ownernewsData`, {
         headers: { Authorization: `Bearer ${token}` },
       });
       setData(response.data);

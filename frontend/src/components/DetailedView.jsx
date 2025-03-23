@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import axios from 'axios';
-import Url from '../Url';
 import like from "../assets/like.svg";
 import share from "../assets/share.svg";
 import feedback from "../assets/feedback.svg";
@@ -15,8 +14,6 @@ function DetailedView() {
   const [newsItem, setNewsItem] = useState(null);
   const [flag,setflag]=useState(false);
   const [loading, setLoading] = useState(true);
-  const [currentuser,setcurrentuser]=useState(null);
-  const [initialrender,setinitialrender]=useState(true)
   const [like1,setlike1]=useState(0)
   console.log("renrendered")
 
@@ -26,16 +23,16 @@ function DetailedView() {
   useEffect(()=>{
     if (query.get('auth')==="admin@gmail.com"){
       setflag(true)
-
     }
 
   },[])
 
   const liked = async () => {
+    const NEWS_URL=process.env.NEWS_URL;
     const query = new URLSearchParams(window.location.search);
     const current=query.get('auth')
     try {
-      const response = await axios.post(`${Url.newsUrl}/verifylike`, {
+      const response = await axios.post(`${NEWS_URL}/verifylike`, {
         newsid: newsItem._id,
         currentemail:current
       });
@@ -53,10 +50,11 @@ function DetailedView() {
   };
 
   const reported = async () => {
+    const NEWS_URL=process.env.NEWS_URL;
     const query = new URLSearchParams(window.location.search);
     const current=query.get('auth')
     try {
-      const response = await axios.post(`${Url.newsUrl}/reported`, {
+      const response = await axios.post(`${NEWS_URL}/reported`, {
         newsid: newsItem._id,
         currentemail:current
       });
@@ -75,9 +73,10 @@ function DetailedView() {
 
 
   const deletepost = async () => {
+    const NEWS_URL=process.env.NEWS_URL;
     const query = new URLSearchParams(window.location.search);
     try {
-      const response = await axios.post(`${Url.newsUrl}/deletepost`, {
+      const response = await axios.post(`${NEWS_URL}/deletepost`, {
         newsid: newsItem._id,
       });
       
@@ -118,10 +117,10 @@ function DetailedView() {
           {like1}
           <img src={like} onClick={()=>{
             liked();
-          }} title='like article'/>
+          }} title='like article' alt='Like Article'/>
           </span>
-          <img src={share} title='share article'/>
-          <a href="mailto:support@yourwebsite.com?subject=Support Inquiry&body=Hello, I need help with..."><img src={feedback} title='share feedback'/></a>
+          <img src={share} title='share article' alt='Share Article'/>
+          <a href="mailto:support@yourwebsite.com?subject=Support Inquiry&body=Hello, I need help with..."><img src={feedback} title='share feedback' alt='Feedback'/></a>
           <img onClick={()=>{
             reported();
           }} src={report} title='report article'/>

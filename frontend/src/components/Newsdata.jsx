@@ -3,7 +3,6 @@ import axios from "axios";
 import toast, { Toaster } from 'react-hot-toast';
 import { useNavigate } from "react-router-dom";
 import './style.scss';
-import Url from "../Url";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
@@ -50,8 +49,9 @@ function Newsdata({ currentemail }) {
 
 
     try {
+      const NEWS_URL=process.env.NEWS_URL;
       const token = localStorage.getItem('token');
-      const response = await axios.post(`${Url.newsUrl}/createNews`, formData,{
+      const response = await axios.post(`${NEWS_URL}/createNews`, formData,{
         headers: { 'Authorization': `Bearer ${token}` }
       });
       toast.success(`News Request Successfully Sent to ${Dept}`);

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Tile from "./Tile";
-import Url from "../Url";
 import { jwtDecode } from "jwt-decode";
 import { useNavigate } from "react-router-dom";
 import "./style.scss";
@@ -23,7 +22,7 @@ const RegisterBlock = () => {
         </p>
       </div>
       <button onClick={Loginclick}>
-        <img src={sticker} />
+        <img src={sticker} alt='Register'/>
         Register NOWWW!!
       </button>
     </div>
@@ -42,8 +41,9 @@ function Front({ setUserAuth, setCurrentEmail, currentemail }) {
   let loading = false;
   const [data, setData] = useState([]);
   const getData = async () => {
+    const NEWS_URL=process.env.NEWS_URL;
     try {
-      const response = await axios.get(`${Url.newsUrl}/approvednewsData`);
+      const response = await axios.get(`${NEWS_URL}/approvednewsData`);
       setData(response.data);
     } catch (error) {
       console.error("Error fetching data", error);
